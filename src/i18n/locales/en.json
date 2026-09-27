@@ -1,0 +1,71 @@
+{
+  "common": {
+    "languageSelector": "Choose language",
+    "checkingSession": "Checking session..."
+  },
+  "header": {
+    "securityOperations": "SECURITY OPERATIONS"
+  },
+  "hero": {
+    "eyebrow": "VULNERABILITY MANAGEMENT PLATFORM",
+    "titleFirst": "Security starts",
+    "titleAccent": "with visibility.",
+    "description": "Centralize your assets, track vulnerabilities, manage security findings and turn risk data into actionable intelligence."
+  },
+  "home": {
+    "login": "Sign in"
+  },
+  "modules": {
+    "title": "PLATFORM MODULES",
+    "assets": {
+      "title": "Asset Inventory",
+      "description": "Technology asset management"
+    },
+    "vulnerabilities": {
+      "title": "Vulnerability Management",
+      "description": "Security findings and remediation"
+    },
+    "analytics": {
+      "title": "Security Analytics",
+      "description": "Risk insights and monitoring"
+    }
+  },
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Access your vulnerability management platform.",
+    "email": "Email address",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "back": "Back to home"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{name}}",
+    "sessionReady": "You have signed in successfully.",
+    "role": "Your role",
+    "logout": "Sign out",
+    "comingSoon": "We're preparing your security dashboard.",
+    "securityOverview": "SECURITY OVERVIEW",
+    "subtitle": "These are the current VulnTrack security metrics.",
+    "loading": "Loading statistics...",
+    "totalFindings": "Total findings",
+    "activeFindings": "Active findings",
+    "overdueFindings": "Overdue findings",
+    "totalAssets": "Registered assets"
+  },
+  "errors": {
+    "invalidCredentials": "The email address or password is incorrect.",
+    "tooManyRequests": "Too many sign-in attempts. Please try again later.",
+    "connection": "Unable to connect to VulnTrack API. Check that the backend is running.",
+    "generic": "Something went wrong. Please try again.",
+    "dashboard": "Unable to load the Dashboard statistics."
+  },
+  "status": {
+    "initialized": "FRONTEND INITIALIZED"
+  },
+  "footer": {
+    "tagline": "BUILT FOR BETTER SECURITY"
+  }
+}

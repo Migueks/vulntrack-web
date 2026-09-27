@@ -1,0 +1,71 @@
+{
+  "common": {
+    "languageSelector": "Seleccionar idioma",
+    "checkingSession": "Comprobando sesión..."
+  },
+  "header": {
+    "securityOperations": "OPERACIONES DE SEGURIDAD"
+  },
+  "hero": {
+    "eyebrow": "PLATAFORMA DE GESTIÓN DE VULNERABILIDADES",
+    "titleFirst": "La seguridad empieza",
+    "titleAccent": "con visibilidad.",
+    "description": "Centraliza tus activos, controla las vulnerabilidades, gestiona los hallazgos de seguridad y transforma los datos de riesgo en información útil para tomar decisiones."
+  },
+  "home": {
+    "login": "Iniciar sesión"
+  },
+  "modules": {
+    "title": "MÓDULOS DE LA PLATAFORMA",
+    "assets": {
+      "title": "Inventario de activos",
+      "description": "Gestión de activos tecnológicos"
+    },
+    "vulnerabilities": {
+      "title": "Gestión de vulnerabilidades",
+      "description": "Hallazgos de seguridad y remediación"
+    },
+    "analytics": {
+      "title": "Análisis de seguridad",
+      "description": "Indicadores de riesgo y seguimiento"
+    }
+  },
+  "login": {
+    "title": "Bienvenido de nuevo",
+    "subtitle": "Accede a tu plataforma de gestión de vulnerabilidades.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "submit": "Iniciar sesión",
+    "submitting": "Iniciando sesión...",
+    "back": "Volver al inicio"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido, {{name}}",
+    "sessionReady": "Tu sesión se ha iniciado correctamente.",
+    "role": "Tu rol",
+    "logout": "Cerrar sesión",
+    "comingSoon": "Estamos preparando tu panel de seguridad.",
+    "securityOverview": "RESUMEN DE SEGURIDAD",
+    "subtitle": "Estos son los indicadores actuales de VulnTrack.",
+    "loading": "Cargando estadísticas...",
+    "totalFindings": "Hallazgos totales",
+    "activeFindings": "Hallazgos activos",
+    "overdueFindings": "Hallazgos vencidos",
+    "totalAssets": "Activos registrados"
+  },
+  "errors": {
+    "invalidCredentials": "El correo electrónico o la contraseña son incorrectos.",
+    "tooManyRequests": "Demasiados intentos de inicio de sesión. Inténtalo más tarde.",
+    "connection": "No se ha podido conectar con VulnTrack API. Comprueba que el backend está funcionando.",
+    "generic": "Se ha producido un error. Inténtalo de nuevo.",
+    "dashboard": "No se han podido cargar las estadísticas del Dashboard."
+  },
+  "status": {
+    "initialized": "INTERFAZ INICIALIZADA"
+  },
+  "footer": {
+    "tagline": "CREADO PARA UNA SEGURIDAD MEJOR"
+  }
+}

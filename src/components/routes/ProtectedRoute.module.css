@@ -1,0 +1,20 @@
+/* Pantalla de comprobación de sesión */
+
+.loadingPage {
+  display: grid;
+
+  min-height: 100vh;
+
+  place-items: center;
+
+  padding: var(--space-8);
+
+  background: var(--color-background);
+}
+
+.loadingMessage {
+  color: var(--color-text-secondary);
+
+  font-size: 0.875rem;
+  text-align: center;
+}

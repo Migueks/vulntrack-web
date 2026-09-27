@@ -1,0 +1,493 @@
+/* Página principal */
+
+.page {
+  position: relative;
+
+  display: flex;
+
+  min-height: 100vh;
+  overflow: hidden;
+
+  background: var(--color-background);
+}
+
+/* Resplandor decorativo */
+
+.glow {
+  position: absolute;
+
+  top: 12%;
+  right: -16.25rem;
+
+  width: 48.75rem;
+  height: 48.75rem;
+
+  background: radial-gradient(circle, rgb(185 28 28 / 13%) 0%, transparent 65%);
+
+  pointer-events: none;
+}
+
+/* Contenedor */
+
+.container {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(100%, 93.75rem);
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 2rem 3.25rem;
+}
+
+/* Cabecera */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-6);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.8125rem;
+}
+
+.brandIcon {
+  display: grid;
+
+  width: 2.625rem;
+  height: 2.625rem;
+
+  place-items: center;
+
+  border: 1px solid rgb(239 68 68 / 30%);
+  border-radius: var(--radius-md);
+
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.brandIcon svg {
+  width: 1.4375rem;
+  height: 1.4375rem;
+}
+
+.brandName {
+  color: var(--color-text);
+
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.brandName span {
+  color: var(--color-primary);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-6);
+}
+
+.headerTag {
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+
+/* Sección principal */
+
+.hero {
+  display: grid;
+  flex: 1;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(21.25rem, 26.875rem);
+
+  align-items: center;
+
+  gap: clamp(2rem, 7vw, 6.25rem);
+
+  padding: 5.3125rem 0;
+}
+
+.heroContent {
+  max-width: 45rem;
+}
+
+/* Etiqueta superior */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.6875rem;
+
+  margin-bottom: 1.875rem;
+
+  color: var(--color-primary);
+
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.eyebrowDot {
+  flex-shrink: 0;
+
+  width: 0.4375rem;
+  height: 0.4375rem;
+
+  border-radius: 50%;
+
+  background: var(--color-primary);
+
+  box-shadow: 0 0 0.8125rem rgb(239 68 68 / 55%);
+}
+
+/* Título principal */
+
+.title {
+  margin-bottom: 1.75rem;
+
+  font-size: clamp(2.75rem, 5vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.title span {
+  color: var(--color-primary);
+}
+
+/* Descripción */
+
+.description {
+  max-width: 34.375rem;
+
+  margin-bottom: 2.125rem;
+
+  color: var(--color-text-secondary);
+
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+/* Etiquetas técnicas */
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.5625rem;
+}
+
+.techTags span {
+  padding: 0.4375rem 0.6875rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  background: var(--color-surface);
+
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* Panel lateral */
+
+.panel {
+  width: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+
+  background: rgb(24 24 27 / 80%);
+
+  box-shadow: var(--shadow-panel);
+}
+
+/* Cabecera del panel */
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.5625rem 1.75rem;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panelLabel {
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.panelHeaderIcon {
+  width: 1.0625rem;
+  height: 1.0625rem;
+
+  color: var(--color-primary);
+}
+
+/* Lista de módulos */
+
+.moduleList {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.625rem;
+  padding: 1.25rem;
+}
+
+.module {
+  display: flex;
+  align-items: center;
+
+  gap: 1.0625rem;
+  padding: 1.0625rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.module:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+}
+
+/* Icono de cada módulo */
+
+.moduleIcon {
+  display: grid;
+  flex-shrink: 0;
+
+  width: 2.6875rem;
+  height: 2.6875rem;
+
+  place-items: center;
+
+  border: 1px solid rgb(239 68 68 / 20%);
+  border-radius: var(--radius-md);
+
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.moduleIcon svg {
+  width: 1.3125rem;
+  height: 1.3125rem;
+}
+
+/* Textos de cada módulo */
+
+.moduleContent h2 {
+  margin: 0 0 0.25rem;
+
+  color: var(--color-text);
+
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.moduleContent p {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.6875rem;
+}
+
+/* Pie del panel */
+
+.panelFooter {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5625rem;
+  padding: 1.1875rem 1.75rem;
+
+  border-top: 1px solid var(--color-border);
+
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.footerDot {
+  width: 0.375rem;
+  height: 0.375rem;
+
+  border-radius: 50%;
+
+  background: var(--color-success);
+}
+
+/* Pie de página */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+
+  gap: var(--space-5);
+  padding-top: var(--space-6);
+
+  border-top: 1px solid var(--color-border);
+
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+}
+
+/* Botón de acceso en el header */
+
+.headerLoginLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 2.5rem;
+
+  padding: 0.5rem 1rem;
+
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+
+  background: var(--color-primary);
+  color: #ffffff;
+
+  font-size: 0.8125rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.headerLoginLink:hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
+}
+
+/* Responsive */
+
+@media (max-width: 65.625rem) {
+  .container {
+    padding: 1.75rem;
+  }
+
+  .hero {
+    gap: 2.8125rem;
+  }
+}
+
+@media (max-width: 50rem) {
+  .headerTag {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 3.4375rem;
+    padding: 5rem 0;
+  }
+
+  .heroContent {
+    max-width: 40.625rem;
+  }
+
+  .panel {
+    max-width: 34.375rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .container {
+    padding: 1.375rem;
+  }
+
+  .headerActions {
+    gap: var(--space-2);
+  }
+
+  .hero {
+    gap: 2.5rem;
+    padding: 4.0625rem 0;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 10vw, 3rem);
+  }
+
+  .brandName {
+    display: none;
+  }
+
+  .headerLoginLink {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+
+  .panelHeader {
+    padding: var(--space-5);
+  }
+
+  .moduleList {
+    padding: var(--space-3);
+  }
+
+  .module {
+    gap: var(--space-3);
+    padding: 0.8125rem;
+  }
+
+  .footer {
+    flex-direction: column;
+
+    gap: 0.5625rem;
+  }
+}
