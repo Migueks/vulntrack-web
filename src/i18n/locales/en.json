@@ -1,10 +1,24 @@
 {
   "common": {
     "languageSelector": "Choose language",
-    "checkingSession": "Checking session..."
+    "checkingSession": "Checking session...",
+    "retry": "Retry"
   },
   "header": {
     "securityOperations": "SECURITY OPERATIONS"
+  },
+  "navigation": {
+    "title": "NAVIGATION",
+    "dashboard": "Dashboard",
+    "assets": "Assets",
+    "vulnerabilities": "Vulnerabilities",
+    "findings": "Findings",
+    "comingSoon": "Soon"
+  },
+  "layout": {
+    "workspace": "Security dashboard",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "eyebrow": "VULNERABILITY MANAGEMENT PLATFORM",
@@ -41,6 +55,11 @@
     "submitting": "Signing in...",
     "back": "Back to home"
   },
+  "roles": {
+    "ADMIN": "Administrator",
+    "ANALYST": "Analyst",
+    "VIEWER": "Viewer"
+  },
   "dashboard": {
     "welcome": "Welcome, {{name}}",
     "sessionReady": "You have signed in successfully.",
@@ -53,7 +72,60 @@
     "totalFindings": "Total findings",
     "activeFindings": "Active findings",
     "overdueFindings": "Overdue findings",
-    "totalAssets": "Registered assets"
+    "totalAssets": "Registered assets",
+    "totalVulnerabilities": "Vulnerabilities",
+    "unassignedFindings": "Unassigned findings"
+  },
+  "charts": {
+    "eyebrow": "ANALYTICS",
+    "title": "Security analytics",
+    "description": "Trends and distribution of recorded findings.",
+    "monthlyTrend": "Monthly trend",
+    "monthlyTrendDescription": "Findings detected and closed each month.",
+    "detected": "Detected",
+    "closed": "Closed",
+    "priorities": "Active findings by priority",
+    "prioritiesDescription": "Distribution of active findings from P1 to P4.",
+    "statuses": "Findings by status",
+    "statusesDescription": "Distribution of all recorded findings.",
+    "findings": "Findings",
+    "noData": "No data available."
+  },
+  "activity": {
+    "eyebrow": "ACTIVITY",
+    "title": "Activity and exposure",
+    "description": "Assets with the most pending work and the latest recorded findings.",
+    "topAssetsTitle": "Most affected assets",
+    "topAssetsDescription": "The five assets with the highest number of active findings.",
+    "recentTitle": "Recent findings",
+    "recentDescription": "The eight most recently recorded findings.",
+    "activeFindings": "Active findings",
+    "assetBarLabel": "{{name}}: {{count}} active findings",
+    "finding": "Finding",
+    "asset": "Asset",
+    "priority": "Priority",
+    "status": "Status",
+    "assignee": "Assignee",
+    "detected": "Detected",
+    "dueDate": "Due date",
+    "overdue": "Overdue",
+    "unassigned": "Unassigned",
+    "noAssets": "No affected assets.",
+    "noFindings": "No recent findings."
+  },
+  "assetCriticality": {
+    "CRITICAL": "Critical",
+    "HIGH": "High",
+    "MEDIUM": "Medium",
+    "LOW": "Low"
+  },
+  "findingStatus": {
+    "OPEN": "Open",
+    "IN_PROGRESS": "In progress",
+    "MITIGATED": "Mitigated",
+    "RESOLVED": "Resolved",
+    "ACCEPTED_RISK": "Accepted risk",
+    "FALSE_POSITIVE": "False positive"
   },
   "errors": {
     "invalidCredentials": "The email address or password is incorrect.",

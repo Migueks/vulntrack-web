@@ -1,10 +1,24 @@
 {
   "common": {
     "languageSelector": "Seleccionar idioma",
-    "checkingSession": "Comprobando sesión..."
+    "checkingSession": "Comprobando sesión...",
+    "retry": "Reintentar"
   },
   "header": {
     "securityOperations": "OPERACIONES DE SEGURIDAD"
+  },
+  "navigation": {
+    "title": "NAVEGACIÓN",
+    "dashboard": "Panel de control",
+    "assets": "Activos",
+    "vulnerabilities": "Vulnerabilidades",
+    "findings": "Hallazgos",
+    "comingSoon": "Pronto"
+  },
+  "layout": {
+    "workspace": "Panel de seguridad",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "hero": {
     "eyebrow": "PLATAFORMA DE GESTIÓN DE VULNERABILIDADES",
@@ -41,6 +55,11 @@
     "submitting": "Iniciando sesión...",
     "back": "Volver al inicio"
   },
+  "roles": {
+    "ADMIN": "Administrador",
+    "ANALYST": "Analista",
+    "VIEWER": "Observador"
+  },
   "dashboard": {
     "welcome": "Bienvenido, {{name}}",
     "sessionReady": "Tu sesión se ha iniciado correctamente.",
@@ -53,7 +72,60 @@
     "totalFindings": "Hallazgos totales",
     "activeFindings": "Hallazgos activos",
     "overdueFindings": "Hallazgos vencidos",
-    "totalAssets": "Activos registrados"
+    "totalAssets": "Activos registrados",
+    "totalVulnerabilities": "Vulnerabilidades",
+    "unassignedFindings": "Hallazgos sin asignar"
+  },
+  "charts": {
+    "eyebrow": "ANÁLISIS",
+    "title": "Análisis de seguridad",
+    "description": "Evolución y distribución de los hallazgos registrados.",
+    "monthlyTrend": "Evolución mensual",
+    "monthlyTrendDescription": "Hallazgos detectados y cerrados por mes.",
+    "detected": "Detectados",
+    "closed": "Cerrados",
+    "priorities": "Hallazgos activos por prioridad",
+    "prioritiesDescription": "Distribución de hallazgos activos entre P1 y P4.",
+    "statuses": "Hallazgos por estado",
+    "statusesDescription": "Distribución del total de hallazgos registrados.",
+    "findings": "Hallazgos",
+    "noData": "No hay datos disponibles."
+  },
+  "activity": {
+    "eyebrow": "ACTIVIDAD",
+    "title": "Actividad y exposición",
+    "description": "Activos con más trabajo pendiente y últimos hallazgos registrados.",
+    "topAssetsTitle": "Activos más afectados",
+    "topAssetsDescription": "Los cinco activos con mayor número de hallazgos pendientes.",
+    "recentTitle": "Hallazgos recientes",
+    "recentDescription": "Los ocho últimos hallazgos registrados en la plataforma.",
+    "activeFindings": "Hallazgos activos",
+    "assetBarLabel": "{{name}}: {{count}} hallazgos activos",
+    "finding": "Hallazgo",
+    "asset": "Activo",
+    "priority": "Prioridad",
+    "status": "Estado",
+    "assignee": "Responsable",
+    "detected": "Detección",
+    "dueDate": "Vencimiento",
+    "overdue": "Vencido",
+    "unassigned": "Sin asignar",
+    "noAssets": "No hay activos afectados.",
+    "noFindings": "No hay hallazgos recientes."
+  },
+  "assetCriticality": {
+    "CRITICAL": "Crítica",
+    "HIGH": "Alta",
+    "MEDIUM": "Media",
+    "LOW": "Baja"
+  },
+  "findingStatus": {
+    "OPEN": "Abierto",
+    "IN_PROGRESS": "En progreso",
+    "MITIGATED": "Mitigado",
+    "RESOLVED": "Resuelto",
+    "ACCEPTED_RISK": "Riesgo aceptado",
+    "FALSE_POSITIVE": "Falso positivo"
   },
   "errors": {
     "invalidCredentials": "El correo electrónico o la contraseña son incorrectos.",

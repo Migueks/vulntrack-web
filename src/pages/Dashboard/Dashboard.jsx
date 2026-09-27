@@ -1,22 +1,24 @@
 import {
   Activity,
+  Bug,
   Database,
-  LogOut,
   ShieldCheck,
   TriangleAlert,
+  UserX,
 } from "lucide-react";
 
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
 import { apiRequest } from "../../api/apiClient";
-import LanguageSwitcher from "../../components/common/LanguageSwitcher/LanguageSwitcher";
+import AppLayout from "../../components/layout/AppLayout";
 import { useAuth } from "../../context/useAuth";
+
+import DashboardCharts from "./DashboardCharts";
+import DashboardActivity from "./DashboardActivity";
 
 import styles from "./Dashboard.module.css";
 
-// Indicadores principales del Dashboard.
 const STATS = [
   {
     key: "totalFindings",
@@ -35,17 +37,22 @@ const STATS = [
     key: "totalAssets",
     icon: Database,
   },
+  {
+    key: "totalVulnerabilities",
+    icon: Bug,
+  },
+  {
+    key: "unassignedFindings",
+    icon: UserX,
+  },
 ];
 
 function Dashboard() {
   const { t, i18n } = useTranslation();
 
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
-  const { user, logout } = useAuth();
-
-  // Consulta las estadísticas reales de MongoDB Atlas.
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, isError, refetch } = useQuery({
     queryKey: ["dashboard", "overview"],
 
     queryFn: () => apiRequest("/dashboard/overview"),
@@ -55,91 +62,63 @@ function Dashboard() {
     staleTime: 30_000,
   });
 
-  // Formatea los números según el idioma seleccionado.
+  const locale = i18n.resolvedLanguage === "en" ? "en-GB" : "es-ES";
+
   const formatNumber = (value) =>
-    new Intl.NumberFormat(
-      i18n.resolvedLanguage === "en" ? "en-GB" : "es-ES",
-    ).format(value ?? 0);
-
-  // Cierra sesión y vuelve al Login.
-  const handleLogout = () => {
-    logout();
-
-    navigate("/login", {
-      replace: true,
-    });
-  };
+    new Intl.NumberFormat(locale).format(value ?? 0);
 
   return (
-    <main className={styles.page}>
-      {/* Cabecera */}
+    <AppLayout>
+      {/* Encabezado */}
 
-      <header className={styles.header}>
-        <div className={styles.brand}>
-          <ShieldCheck size={28} strokeWidth={2} aria-hidden="true" />
+      <div className={styles.heading}>
+        <div>
+          <span className={styles.eyebrow}>
+            <Activity size={16} aria-hidden="true" />
 
-          <span>
-            VULNTRACK<span>.</span>
+            {t("dashboard.securityOverview")}
           </span>
+
+          <h1>
+            {t("dashboard.welcome", {
+              name: user?.name,
+            })}
+          </h1>
+
+          <p>{t("dashboard.subtitle")}</p>
         </div>
 
-        <div className={styles.actions}>
-          <LanguageSwitcher />
+        <span className={styles.role}>
+          {t(`roles.${user?.role}`, {
+            defaultValue: user?.role ?? "",
+          })}
+        </span>
+      </div>
 
-          <button
-            type="button"
-            className={styles.logout}
-            onClick={handleLogout}
-          >
-            <LogOut size={17} aria-hidden="true" />
+      {/* Carga */}
 
-            <span>{t("dashboard.logout")}</span>
+      {isPending && (
+        <p className={styles.message} role="status">
+          {t("dashboard.loading")}
+        </p>
+      )}
+
+      {/* Error */}
+
+      {isError && (
+        <div className={styles.error} role="alert">
+          <p>{t("errors.dashboard")}</p>
+
+          <button type="button" onClick={() => void refetch()}>
+            {t("common.retry")}
           </button>
         </div>
-      </header>
+      )}
 
-      {/* Contenido */}
+      {/* Datos reales */}
 
-      <section className={styles.content}>
-        <div className={styles.heading}>
-          <div>
-            <span className={styles.eyebrow}>
-              <Activity size={16} aria-hidden="true" />
-
-              {t("dashboard.securityOverview")}
-            </span>
-
-            <h1>
-              {t("dashboard.welcome", {
-                name: user?.name,
-              })}
-            </h1>
-
-            <p>{t("dashboard.subtitle")}</p>
-          </div>
-
-          <span className={styles.role}>{user?.role}</span>
-        </div>
-
-        {/* Estado de carga */}
-
-        {isPending && (
-          <p className={styles.message} role="status">
-            {t("dashboard.loading")}
-          </p>
-        )}
-
-        {/* Error de la API */}
-
-        {isError && (
-          <div className={styles.error} role="alert">
-            {t("errors.dashboard")}
-          </div>
-        )}
-
-        {/* Indicadores reales */}
-
-        {data && (
+      {data?.summary && (
+        <>
           <div className={styles.stats}>
             {STATS.map((stat) => {
               const Icon = stat.icon;
@@ -159,9 +138,13 @@ function Dashboard() {
               );
             })}
           </div>
-        )}
-      </section>
-    </main>
+
+          <DashboardCharts overview={data} />
+
+          <DashboardActivity overview={data} />
+        </>
+      )}
+    </AppLayout>
   );
 }
 
