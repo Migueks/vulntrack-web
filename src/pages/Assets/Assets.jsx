@@ -10,6 +10,7 @@ import {
 
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import { getAssets } from "../../api/assetsApi";
 import AppLayout from "../../components/layout/AppLayout";
@@ -18,6 +19,7 @@ import styles from "./Assets.module.css";
 
 function Assets() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // Estados de búsqueda, filtros y paginación.
   const [search, setSearch] = useState("");
@@ -26,7 +28,7 @@ function Assets() {
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
 
-  // Retrasa ligeramente la búsqueda para evitar peticiones innecesarias.
+  // Retrasa la búsqueda para evitar una petición por cada pulsación.
   const deferredSearch = useDeferredValue(search);
 
   const { data, isPending, isError, refetch, isFetching } = useQuery({
@@ -55,7 +57,7 @@ function Assets() {
 
     staleTime: 30_000,
 
-    // Mantiene los datos anteriores mientras llega la página nueva.
+    // Mantiene los datos anteriores mientras se carga otra página.
     placeholderData: (previousData) => previousData,
   });
 
@@ -101,6 +103,7 @@ function Assets() {
             className={isFetching ? styles.spinning : undefined}
             aria-hidden="true"
           />
+
           {t("assets.refresh")}
         </button>
       </div>
@@ -123,6 +126,7 @@ function Assets() {
         </div>
       )}
 
+      {/* Inventario */}
       {!isPending && !isError && (
         <section className={styles.card}>
           <div className={styles.cardHeader}>
@@ -221,51 +225,66 @@ function Assets() {
                   </thead>
 
                   <tbody>
-                    {assets.map((asset) => (
-                      <tr key={asset.id}>
-                        <td>
-                          <span className={styles.code}>
-                            {asset.assetCode ?? "—"}
-                          </span>
-                        </td>
+                    {assets.map((asset) => {
+                      const assetId = asset.id ?? asset._id;
 
-                        <td>
-                          <strong className={styles.name}>
-                            {asset.name ?? "—"}
-                          </strong>
-                        </td>
+                      return (
+                        <tr
+                          key={assetId}
+                          className={styles.clickableRow}
+                          tabIndex={0}
+                          role="link"
+                          onClick={() => navigate(`/assets/${assetId}`)}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter") {
+                              navigate(`/assets/${assetId}`);
+                            }
+                          }}
+                        >
+                          <td>
+                            <span className={styles.code}>
+                              {asset.assetCode ?? "—"}
+                            </span>
+                          </td>
 
-                        <td>
-                          {asset.type
-                            ? t(`assetType.${asset.type}`, {
-                                defaultValue: asset.type,
-                              })
-                            : "—"}
-                        </td>
+                          <td>
+                            <strong className={styles.name}>
+                              {asset.name ?? "—"}
+                            </strong>
+                          </td>
 
-                        <td>
-                          <span
-                            className={styles.criticalityBadge}
-                            data-criticality={asset.criticality}
-                          >
-                            {asset.criticality
-                              ? t(`assetCriticality.${asset.criticality}`)
+                          <td>
+                            {asset.type
+                              ? t(`assetType.${asset.type}`, {
+                                  defaultValue: asset.type,
+                                })
                               : "—"}
-                          </span>
-                        </td>
+                          </td>
 
-                        <td>
-                          <span
-                            className={styles.statusBadge}
-                            data-status={asset.status}
-                          >
-                            {asset.status
-                              ? t(`assetStatus.${asset.status}`)
-                              : "—"}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                          <td>
+                            <span
+                              className={styles.criticalityBadge}
+                              data-criticality={asset.criticality}
+                            >
+                              {asset.criticality
+                                ? t(`assetCriticality.${asset.criticality}`)
+                                : "—"}
+                            </span>
+                          </td>
+
+                          <td>
+                            <span
+                              className={styles.statusBadge}
+                              data-status={asset.status}
+                            >
+                              {asset.status
+                                ? t(`assetStatus.${asset.status}`)
+                                : "—"}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

@@ -139,6 +139,29 @@
     "next": "Siguiente",
     "page": "Página {{page}} de {{totalPages}}"
   },
+  "assetDetail": {
+    "back": "Volver al inventario",
+    "loading": "Cargando activo...",
+    "error": "No se ha podido cargar el activo.",
+    "noDescription": "Sin descripción.",
+    "information": "Información del activo",
+    "hostname": "Hostname",
+    "ip": "Dirección IP",
+    "os": "Sistema operativo",
+    "environment": "Entorno",
+    "department": "Departamento",
+    "createdBy": "Registrado por",
+    "relatedFindings": "Hallazgos relacionados",
+    "relatedFindingsDescription": "{{count}} hallazgos registrados en este activo.",
+    "findingsLoading": "Cargando hallazgos...",
+    "findingsError": "No se han podido cargar los hallazgos.",
+    "noFindings": "Este activo no tiene hallazgos registrados.",
+    "findingCode": "Código",
+    "vulnerability": "Vulnerabilidad",
+    "priority": "Prioridad",
+    "findingStatus": "Estado",
+    "dueDate": "Vencimiento"
+  },
   "assetType": {
     "SERVER": "Servidor",
     "WORKSTATION": "Estación de trabajo",
@@ -158,6 +181,11 @@
     "HIGH": "Alta",
     "MEDIUM": "Media",
     "LOW": "Baja"
+  },
+  "assetEnvironment": {
+    "PRODUCTION": "Producción",
+    "PREPRODUCTION": "Preproducción",
+    "DEVELOPMENT": "Desarrollo"
   },
   "findingStatus": {
     "OPEN": "Abierto",

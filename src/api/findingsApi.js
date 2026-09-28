@@ -1,7 +1,7 @@
 import { apiRequest } from "./apiClient";
 
-// Recupera activos aplicando filtros, ordenación y paginación.
-export const getAssets = async (params = {}) => {
+// Recupera hallazgos con filtros, ordenación y paginación.
+export const getFindings = async (params = {}) => {
   const searchParams = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {
@@ -12,17 +12,12 @@ export const getAssets = async (params = {}) => {
 
   const query = searchParams.toString();
 
-  const response = await apiRequest(`/assets${query ? `?${query}` : ""}`, {
+  const response = await apiRequest(`/findings${query ? `?${query}` : ""}`, {
     raw: true,
   });
 
   return {
-    assets: response?.data ?? [],
+    findings: response?.data ?? [],
     pagination: response?.pagination ?? null,
   };
-};
-
-// Recupera el detalle de un activo concreto.
-export const getAssetById = async (id) => {
-  return apiRequest(`/assets/${id}`);
 };

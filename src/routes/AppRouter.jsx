@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Assets from "../pages/Assets/Assets";
+import AssetDetail from "../pages/AssetDetail/AssetDetail";
 
 function AppRouter() {
   return (
@@ -36,6 +37,16 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <Assets />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Detalles del activo */}
+      <Route
+        path="/assets/:id"
+        element={
+          <ProtectedRoute>
+            <AssetDetail />
           </ProtectedRoute>
         }
       />

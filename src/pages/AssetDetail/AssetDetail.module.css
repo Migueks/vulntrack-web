@@ -1,0 +1,219 @@
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  margin-bottom: var(--space-6);
+
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.backButton:hover {
+  color: var(--color-primary);
+}
+
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: var(--space-6);
+
+  margin-bottom: var(--space-8);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  margin-bottom: var(--space-3);
+
+  color: var(--color-primary);
+
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.heading h1 {
+  margin-bottom: var(--space-3);
+
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.heading p {
+  max-width: 45rem;
+  margin: 0;
+}
+
+.card {
+  padding: var(--space-6);
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface-alt);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  margin-bottom: var(--space-6);
+}
+
+.cardTitle h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: var(--space-6);
+}
+
+.grid div {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-2);
+}
+
+.grid span {
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+}
+
+.grid strong {
+  color: var(--color-text);
+  font-size: 0.875rem;
+}
+
+.statusBadge {
+  padding: 0.375rem 0.625rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+}
+
+.statusBadge[data-status="ACTIVE"] {
+  border-color: rgb(34 197 94 / 30%);
+  color: var(--color-success);
+}
+
+.statusBadge[data-status="INACTIVE"],
+.statusBadge[data-status="DECOMMISSIONED"] {
+  color: var(--color-text-muted);
+}
+
+.message,
+.error {
+  padding: var(--space-8);
+}
+
+.error {
+  color: var(--color-danger);
+}
+
+.findingsCard {
+  margin-top: var(--space-6);
+}
+
+.findingsHeader {
+  margin-bottom: var(--space-4);
+}
+
+.findingsHeader .cardTitle {
+  margin-bottom: 0;
+}
+
+.findingsHeader p {
+  margin: var(--space-1) 0 0;
+
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: var(--space-3);
+
+  border-bottom: 1px solid var(--color-border);
+
+  text-align: left;
+  font-size: 0.8125rem;
+}
+
+.table th {
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+}
+
+.code {
+  color: var(--color-primary);
+
+  font-family: var(--font-mono);
+}
+
+.priorityBadge {
+  display: inline-flex;
+
+  padding: 0.25rem 0.5rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.priorityBadge[data-priority="P1"] {
+  color: var(--color-danger);
+}
+
+.priorityBadge[data-priority="P2"] {
+  color: var(--color-warning);
+}
+
+.empty {
+  padding: var(--space-6);
+
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 40rem) {
+  .heading {
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
