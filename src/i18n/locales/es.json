@@ -113,6 +113,46 @@
     "noAssets": "No hay activos afectados.",
     "noFindings": "No hay hallazgos recientes."
   },
+  "assets": {
+    "eyebrow": "INVENTARIO",
+    "title": "Activos",
+    "description": "Inventario de activos tecnológicos registrados en VulnTrack.",
+    "refresh": "Actualizar",
+    "loading": "Cargando activos...",
+    "inventory": "Inventario de activos",
+    "visibleAssets_one": "{{count}} activo mostrado",
+    "visibleAssets_other": "{{count}} activos mostrados",
+    "empty": "No hay activos disponibles.",
+    "code": "Código",
+    "name": "Nombre",
+    "type": "Tipo",
+    "criticality": "Criticidad",
+    "status": "Estado",
+    "search": "Buscar por código, nombre, hostname, IP o departamento...",
+    "filterType": "Filtrar por tipo",
+    "filterCriticality": "Filtrar por criticidad",
+    "filterStatus": "Filtrar por estado",
+    "allTypes": "Todos los tipos",
+    "allCriticalities": "Todas las criticidades",
+    "allStatuses": "Todos los estados",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page": "Página {{page}} de {{totalPages}}"
+  },
+  "assetType": {
+    "SERVER": "Servidor",
+    "WORKSTATION": "Estación de trabajo",
+    "NETWORK": "Red",
+    "WEB_APPLICATION": "Aplicación web",
+    "DATABASE": "Base de datos",
+    "CLOUD": "Nube",
+    "OTHER": "Otro"
+  },
+  "assetStatus": {
+    "ACTIVE": "Activo",
+    "INACTIVE": "Inactivo",
+    "DECOMMISSIONED": "Retirado"
+  },
   "assetCriticality": {
     "CRITICAL": "Crítica",
     "HIGH": "Alta",
@@ -132,7 +172,8 @@
     "tooManyRequests": "Demasiados intentos de inicio de sesión. Inténtalo más tarde.",
     "connection": "No se ha podido conectar con VulnTrack API. Comprueba que el backend está funcionando.",
     "generic": "Se ha producido un error. Inténtalo de nuevo.",
-    "dashboard": "No se han podido cargar las estadísticas del Dashboard."
+    "dashboard": "No se han podido cargar las estadísticas del Dashboard.",
+    "assets": "No se ha podido cargar el inventario de activos."
   },
   "status": {
     "initialized": "INTERFAZ INICIALIZADA"

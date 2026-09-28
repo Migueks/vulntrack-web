@@ -38,7 +38,7 @@ export class ApiError extends Error {
 // Cliente HTTP reutilizable para todas las peticiones.
 export const apiRequest = async (
   endpoint,
-  { method = "GET", body, headers = {}, auth = true, signal } = {},
+  { method = "GET", body, headers = {}, auth = true, signal, raw = false } = {},
 ) => {
   const token = auth ? getToken() : null;
 
@@ -95,5 +95,5 @@ export const apiRequest = async (
     );
   }
 
-  return payload?.data;
+  return raw ? payload : payload?.data;
 };

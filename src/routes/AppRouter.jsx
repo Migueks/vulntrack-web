@@ -5,8 +5,8 @@ import ProtectedRoute from "../components/routes/ProtectedRoute";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Assets from "../pages/Assets/Assets";
 
-// Navegación principal de VulnTrack.
 function AppRouter() {
   return (
     <Routes>
@@ -14,11 +14,11 @@ function AppRouter() {
 
       <Route path="/" element={<Home />} />
 
-      {/* Inicio de sesión */}
+      {/* Login */}
 
       <Route path="/login" element={<Login />} />
 
-      {/* Dashboard privado */}
+      {/* Dashboard */}
 
       <Route
         path="/dashboard"
@@ -29,7 +29,18 @@ function AppRouter() {
         }
       />
 
-      {/* Rutas desconocidas */}
+      {/* Activos */}
+
+      <Route
+        path="/assets"
+        element={
+          <ProtectedRoute>
+            <Assets />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Ruta desconocida */}
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

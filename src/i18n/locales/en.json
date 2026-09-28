@@ -113,6 +113,47 @@
     "noAssets": "No affected assets.",
     "noFindings": "No recent findings."
   },
+
+  "assets": {
+    "eyebrow": "INVENTORY",
+    "title": "Assets",
+    "description": "Inventory of technology assets registered in VulnTrack.",
+    "refresh": "Refresh",
+    "loading": "Loading assets...",
+    "inventory": "Asset inventory",
+    "visibleAssets_one": "{{count}} asset shown",
+    "visibleAssets_other": "{{count}} assets shown",
+    "empty": "No assets available.",
+    "code": "Code",
+    "name": "Name",
+    "type": "Type",
+    "criticality": "Criticality",
+    "status": "Status",
+    "search": "Search by code, name, hostname, IP or department...",
+    "filterType": "Filter by type",
+    "filterCriticality": "Filter by criticality",
+    "filterStatus": "Filter by status",
+    "allTypes": "All types",
+    "allCriticalities": "All criticalities",
+    "allStatuses": "All statuses",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{totalPages}}"
+  },
+  "assetType": {
+    "SERVER": "Server",
+    "WORKSTATION": "Workstation",
+    "NETWORK": "Network",
+    "WEB_APPLICATION": "Web application",
+    "DATABASE": "Database",
+    "CLOUD": "Cloud",
+    "OTHER": "Other"
+  },
+  "assetStatus": {
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "DECOMMISSIONED": "Decommissioned"
+  },
   "assetCriticality": {
     "CRITICAL": "Critical",
     "HIGH": "High",
@@ -132,7 +173,8 @@
     "tooManyRequests": "Too many sign-in attempts. Please try again later.",
     "connection": "Unable to connect to VulnTrack API. Check that the backend is running.",
     "generic": "Something went wrong. Please try again.",
-    "dashboard": "Unable to load the Dashboard statistics."
+    "dashboard": "Unable to load the Dashboard statistics.",
+    "assets": "Unable to load the asset inventory."
   },
   "status": {
     "initialized": "FRONTEND INITIALIZED"

@@ -13,11 +13,20 @@ import { useAuth } from "../../context/useAuth";
 
 import styles from "./Sidebar.module.css";
 
-const UPCOMING_MODULES = [
+const AVAILABLE_MODULES = [
+  {
+    key: "dashboard",
+    icon: LayoutDashboard,
+    path: "/dashboard",
+  },
   {
     key: "assets",
     icon: Database,
+    path: "/assets",
   },
+];
+
+const UPCOMING_MODULES = [
   {
     key: "vulnerabilities",
     icon: ShieldAlert,
@@ -30,6 +39,7 @@ const UPCOMING_MODULES = [
 
 function Sidebar({ isOpen, onNavigate }) {
   const { t } = useTranslation();
+
   const { user } = useAuth();
 
   return (
@@ -54,20 +64,25 @@ function Sidebar({ isOpen, onNavigate }) {
       <nav className={styles.navigation} aria-label={t("navigation.title")}>
         <span className={styles.sectionTitle}>{t("navigation.title")}</span>
 
-        <NavLink
-          to="/dashboard"
-          end
-          onClick={onNavigate}
-          className={({ isActive }) =>
-            `${styles.navItem} ${isActive ? styles.active : ""}`
-          }
-        >
-          <LayoutDashboard size={19} aria-hidden="true" />
+        {AVAILABLE_MODULES.map((module) => {
+          const Icon = module.icon;
 
-          <span>{t("navigation.dashboard")}</span>
-        </NavLink>
+          return (
+            <NavLink
+              key={module.key}
+              to={module.path}
+              end
+              onClick={onNavigate}
+              className={({ isActive }) =>
+                `${styles.navItem} ${isActive ? styles.active : ""}`
+              }
+            >
+              <Icon size={19} aria-hidden="true" />
 
-        {/* Módulos que implementaremos más adelante */}
+              <span>{t(`navigation.${module.key}`)}</span>
+            </NavLink>
+          );
+        })}
 
         {UPCOMING_MODULES.map((module) => {
           const Icon = module.icon;
