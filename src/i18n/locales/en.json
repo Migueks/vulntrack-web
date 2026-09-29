@@ -140,6 +140,7 @@
     "next": "Next",
     "page": "Page {{page}} of {{totalPages}}"
   },
+
   "assetDetail": {
     "back": "Back to inventory",
     "loading": "Loading asset...",
@@ -163,6 +164,13 @@
     "findingStatus": "Status",
     "dueDate": "Due date"
   },
+
+  "assetStatus": {
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "DECOMMISSIONED": "Decommissioned"
+  },
+
   "assetType": {
     "SERVER": "Server",
     "WORKSTATION": "Workstation",
@@ -172,22 +180,94 @@
     "CLOUD": "Cloud",
     "OTHER": "Other"
   },
-  "assetStatus": {
-    "ACTIVE": "Active",
-    "INACTIVE": "Inactive",
-    "DECOMMISSIONED": "Decommissioned"
-  },
+
   "assetCriticality": {
     "CRITICAL": "Critical",
     "HIGH": "High",
     "MEDIUM": "Medium",
     "LOW": "Low"
   },
+
   "assetEnvironment": {
     "PRODUCTION": "Production",
     "PREPRODUCTION": "Pre-production",
     "DEVELOPMENT": "Development"
   },
+  "vulnerabilities": {
+    "eyebrow": "SECURITY CATALOG",
+    "title": "Vulnerabilities",
+    "description": "Catalog of known vulnerabilities registered in VulnTrack.",
+    "refresh": "Refresh",
+    "loading": "Loading vulnerabilities...",
+    "catalog": "Vulnerability catalog",
+    "visible_one": "{{count}} vulnerability found",
+    "visible_other": "{{count}} vulnerabilities found",
+    "search": "Search by code, CVE, title or description...",
+    "allSeverities": "All severities",
+    "allCategories": "All categories",
+    "allStatuses": "All statuses",
+    "empty": "No vulnerabilities available.",
+    "code": "Code",
+    "titleColumn": "Title",
+    "cve": "CVE",
+    "cvss": "CVSS",
+    "severity": "Severity",
+    "status": "Status",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{totalPages}}"
+  },
+
+  "vulnerabilityDetail": {
+    "back": "Back to catalog",
+    "loading": "Loading vulnerability...",
+    "error": "The vulnerability could not be loaded.",
+    "information": "Vulnerability information",
+    "category": "Category",
+    "exploit": "Exploit available",
+    "yes": "Yes",
+    "no": "No",
+    "publishedAt": "Publication date",
+    "createdBy": "Created by",
+    "remediation": "Recommended remediation",
+    "references": "References",
+    "relatedFindings": "Related findings",
+    "relatedFindingsDescription": "{{count}} findings associated with this vulnerability.",
+    "findingsLoading": "Loading findings...",
+    "findingsError": "Unable to load findings.",
+    "noFindings": "This vulnerability has no registered findings.",
+    "findingCode": "Code",
+    "asset": "Asset",
+    "priority": "Priority",
+    "findingStatus": "Status",
+    "dueDate": "Due date"
+  },
+
+  "vulnerabilitySeverity": {
+    "CRITICAL": "Critical",
+    "HIGH": "High",
+    "MEDIUM": "Medium",
+    "LOW": "Low"
+  },
+
+  "vulnerabilityStatus": {
+    "ACTIVE": "Active",
+    "ARCHIVED": "Archived"
+  },
+
+  "vulnerabilityCategory": {
+    "WEB": "Web",
+    "NETWORK": "Network",
+    "CONFIGURATION": "Configuration",
+    "AUTHENTICATION": "Authentication",
+    "ACCESS_CONTROL": "Access control",
+    "CRYPTOGRAPHY": "Cryptography",
+    "DEPENDENCY": "Dependency",
+    "DATABASE": "Database",
+    "OPERATING_SYSTEM": "Operating system",
+    "OTHER": "Other"
+  },
+
   "findingStatus": {
     "OPEN": "Open",
     "IN_PROGRESS": "In progress",
@@ -196,17 +276,21 @@
     "ACCEPTED_RISK": "Accepted risk",
     "FALSE_POSITIVE": "False positive"
   },
+
   "errors": {
     "invalidCredentials": "The email address or password is incorrect.",
     "tooManyRequests": "Too many sign-in attempts. Please try again later.",
     "connection": "Unable to connect to VulnTrack API. Check that the backend is running.",
     "generic": "Something went wrong. Please try again.",
     "dashboard": "Unable to load the Dashboard statistics.",
-    "assets": "Unable to load the asset inventory."
+    "assets": "Unable to load the asset inventory.",
+    "vulnerabilities": "Unable to load the vulnerability catalog."
   },
+
   "status": {
     "initialized": "FRONTEND INITIALIZED"
   },
+
   "footer": {
     "tagline": "BUILT FOR BETTER SECURITY"
   }

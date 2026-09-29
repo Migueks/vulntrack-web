@@ -24,13 +24,14 @@ const AVAILABLE_MODULES = [
     icon: Database,
     path: "/assets",
   },
-];
-
-const UPCOMING_MODULES = [
   {
     key: "vulnerabilities",
     icon: ShieldAlert,
+    path: "/vulnerabilities",
   },
+];
+
+const UPCOMING_MODULES = [
   {
     key: "findings",
     icon: ClipboardList,

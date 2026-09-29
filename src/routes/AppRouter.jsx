@@ -7,6 +7,8 @@ import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Assets from "../pages/Assets/Assets";
 import AssetDetail from "../pages/AssetDetail/AssetDetail";
+import Vulnerabilities from "../pages/Vulnerabilities/Vulnerabilities";
+import VulnerabilityDetail from "../pages/VulnerabilityDetail/VulnerabilityDetail";
 
 function AppRouter() {
   return (
@@ -47,6 +49,28 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <AssetDetail />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Vulnerabilidades */}
+
+      <Route
+        path="/vulnerabilities"
+        element={
+          <ProtectedRoute>
+            <Vulnerabilities />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Detalle de vulnerabilidad */}
+
+      <Route
+        path="/vulnerabilities/:id"
+        element={
+          <ProtectedRoute>
+            <VulnerabilityDetail />
           </ProtectedRoute>
         }
       />
