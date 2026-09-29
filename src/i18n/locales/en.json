@@ -113,7 +113,6 @@
     "noAssets": "No affected assets.",
     "noFindings": "No recent findings."
   },
-
   "assets": {
     "eyebrow": "INVENTORY",
     "title": "Assets",
@@ -140,7 +139,6 @@
     "next": "Next",
     "page": "Page {{page}} of {{totalPages}}"
   },
-
   "assetDetail": {
     "back": "Back to inventory",
     "loading": "Loading asset...",
@@ -164,13 +162,11 @@
     "findingStatus": "Status",
     "dueDate": "Due date"
   },
-
   "assetStatus": {
     "ACTIVE": "Active",
     "INACTIVE": "Inactive",
     "DECOMMISSIONED": "Decommissioned"
   },
-
   "assetType": {
     "SERVER": "Server",
     "WORKSTATION": "Workstation",
@@ -180,14 +176,12 @@
     "CLOUD": "Cloud",
     "OTHER": "Other"
   },
-
   "assetCriticality": {
     "CRITICAL": "Critical",
     "HIGH": "High",
     "MEDIUM": "Medium",
     "LOW": "Low"
   },
-
   "assetEnvironment": {
     "PRODUCTION": "Production",
     "PREPRODUCTION": "Pre-production",
@@ -217,7 +211,6 @@
     "next": "Next",
     "page": "Page {{page}} of {{totalPages}}"
   },
-
   "vulnerabilityDetail": {
     "back": "Back to catalog",
     "loading": "Loading vulnerability...",
@@ -242,19 +235,16 @@
     "findingStatus": "Status",
     "dueDate": "Due date"
   },
-
   "vulnerabilitySeverity": {
     "CRITICAL": "Critical",
     "HIGH": "High",
     "MEDIUM": "Medium",
     "LOW": "Low"
   },
-
   "vulnerabilityStatus": {
     "ACTIVE": "Active",
     "ARCHIVED": "Archived"
   },
-
   "vulnerabilityCategory": {
     "WEB": "Web",
     "NETWORK": "Network",
@@ -267,7 +257,58 @@
     "OPERATING_SYSTEM": "Operating system",
     "OTHER": "Other"
   },
-
+  "findings": {
+    "eyebrow": "RISK MANAGEMENT",
+    "title": "Findings",
+    "description": "Track vulnerabilities detected across VulnTrack assets.",
+    "refresh": "Refresh",
+    "loading": "Loading findings...",
+    "list": "Finding list",
+    "visible_one": "{{count}} finding found",
+    "visible_other": "{{count}} findings found",
+    "search": "Search by code, asset, CVE or vulnerability...",
+    "allPriorities": "All priorities",
+    "allStatuses": "All statuses",
+    "allDeadlines": "All deadlines",
+    "overdueOnly": "Overdue only",
+    "notOverdue": "Not overdue",
+    "empty": "No findings available.",
+    "code": "Code",
+    "asset": "Asset",
+    "vulnerability": "Vulnerability",
+    "priority": "Priority",
+    "status": "Status",
+    "assignedTo": "Assignee",
+    "dueDate": "Due date",
+    "unassigned": "Unassigned",
+    "overdue": "Overdue",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{totalPages}}"
+  },
+  "findingDetail": {
+    "back": "Back to findings",
+    "loading": "Loading finding...",
+    "error": "The finding could not be loaded.",
+    "information": "Finding information",
+    "asset": "Asset",
+    "assetCriticality": "Asset criticality",
+    "vulnerability": "Vulnerability",
+    "severity": "Severity",
+    "assignedTo": "Assignee",
+    "createdBy": "Created by",
+    "detectedAt": "Detected",
+    "dueDate": "Due date",
+    "closedAt": "Closed",
+    "updatedAt": "Last update",
+    "closureNote": "Closure justification",
+    "evidence": "Evidence",
+    "evidenceCount_one": "{{count}} evidence item attached",
+    "evidenceCount_other": "{{count}} evidence items attached",
+    "noEvidence": "No evidence attached.",
+    "history": "History",
+    "noHistory": "No activity recorded."
+  },
   "findingStatus": {
     "OPEN": "Open",
     "IN_PROGRESS": "In progress",
@@ -276,7 +317,15 @@
     "ACCEPTED_RISK": "Accepted risk",
     "FALSE_POSITIVE": "False positive"
   },
-
+  "findingHistory": {
+    "CREATED": "Finding created",
+    "ASSIGNED": "Finding assigned",
+    "UNASSIGNED": "Finding unassigned",
+    "STATUS_CHANGED": "Status updated",
+    "EVIDENCE_ADDED": "Evidence added",
+    "EVIDENCE_REMOVED": "Evidence removed",
+    "NOTE_ADDED": "Note added"
+  },
   "errors": {
     "invalidCredentials": "The email address or password is incorrect.",
     "tooManyRequests": "Too many sign-in attempts. Please try again later.",
@@ -284,13 +333,12 @@
     "generic": "Something went wrong. Please try again.",
     "dashboard": "Unable to load the Dashboard statistics.",
     "assets": "Unable to load the asset inventory.",
-    "vulnerabilities": "Unable to load the vulnerability catalog."
+    "vulnerabilities": "Unable to load the vulnerability catalog.",
+    "findings": "Unable to load the findings."
   },
-
   "status": {
     "initialized": "FRONTEND INITIALIZED"
   },
-
   "footer": {
     "tagline": "BUILT FOR BETTER SECURITY"
   }

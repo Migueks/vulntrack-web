@@ -21,3 +21,8 @@ export const getFindings = async (params = {}) => {
     pagination: response?.pagination ?? null,
   };
 };
+
+// Recupera el detalle completo de un hallazgo.
+export const getFindingById = async (id) => {
+  return apiRequest(`/findings/${id}`);
+};

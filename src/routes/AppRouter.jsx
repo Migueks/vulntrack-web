@@ -9,6 +9,8 @@ import Assets from "../pages/Assets/Assets";
 import AssetDetail from "../pages/AssetDetail/AssetDetail";
 import Vulnerabilities from "../pages/Vulnerabilities/Vulnerabilities";
 import VulnerabilityDetail from "../pages/VulnerabilityDetail/VulnerabilityDetail";
+import Findings from "../pages/Findings/Findings";
+import FindingDetail from "../pages/FindingDetail/FindingDetail";
 
 function AppRouter() {
   return (
@@ -71,6 +73,28 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <VulnerabilityDetail />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Hallazgos */}
+
+      <Route
+        path="/findings"
+        element={
+          <ProtectedRoute>
+            <Findings />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Detalle de hallazgo */}
+
+      <Route
+        path="/findings/:id"
+        element={
+          <ProtectedRoute>
+            <FindingDetail />
           </ProtectedRoute>
         }
       />

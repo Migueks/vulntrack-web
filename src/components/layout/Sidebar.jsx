@@ -29,14 +29,14 @@ const AVAILABLE_MODULES = [
     icon: ShieldAlert,
     path: "/vulnerabilities",
   },
-];
-
-const UPCOMING_MODULES = [
   {
     key: "findings",
     icon: ClipboardList,
+    path: "/findings",
   },
 ];
+
+const UPCOMING_MODULES = [];
 
 function Sidebar({ isOpen, onNavigate }) {
   const { t } = useTranslation();

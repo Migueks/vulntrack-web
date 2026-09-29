@@ -1,6 +1,6 @@
 {
   "common": {
-    "languageSelector": "Seleccionar idioma",
+    "languageSelector": "Elegir idioma",
     "checkingSession": "Comprobando sesión...",
     "retry": "Reintentar"
   },
@@ -9,11 +9,11 @@
   },
   "navigation": {
     "title": "NAVEGACIÓN",
-    "dashboard": "Panel de control",
+    "dashboard": "Dashboard",
     "assets": "Activos",
     "vulnerabilities": "Vulnerabilidades",
     "findings": "Hallazgos",
-    "comingSoon": "Pronto"
+    "comingSoon": "Próximamente"
   },
   "layout": {
     "workspace": "Panel de seguridad",
@@ -22,9 +22,9 @@
   },
   "hero": {
     "eyebrow": "PLATAFORMA DE GESTIÓN DE VULNERABILIDADES",
-    "titleFirst": "La seguridad empieza",
+    "titleFirst": "La seguridad comienza",
     "titleAccent": "con visibilidad.",
-    "description": "Centraliza tus activos, controla las vulnerabilidades, gestiona los hallazgos de seguridad y transforma los datos de riesgo en información útil para tomar decisiones."
+    "description": "Centraliza tus activos, realiza el seguimiento de vulnerabilidades, gestiona hallazgos de seguridad y convierte los datos de riesgo en información útil."
   },
   "home": {
     "login": "Iniciar sesión"
@@ -40,8 +40,8 @@
       "description": "Hallazgos de seguridad y remediación"
     },
     "analytics": {
-      "title": "Análisis de seguridad",
-      "description": "Indicadores de riesgo y seguimiento"
+      "title": "Analítica de seguridad",
+      "description": "Análisis y seguimiento del riesgo"
     }
   },
   "login": {
@@ -58,16 +58,16 @@
   "roles": {
     "ADMIN": "Administrador",
     "ANALYST": "Analista",
-    "VIEWER": "Observador"
+    "VIEWER": "Visualizador"
   },
   "dashboard": {
     "welcome": "Bienvenido, {{name}}",
-    "sessionReady": "Tu sesión se ha iniciado correctamente.",
+    "sessionReady": "Has iniciado sesión correctamente.",
     "role": "Tu rol",
     "logout": "Cerrar sesión",
     "comingSoon": "Estamos preparando tu panel de seguridad.",
     "securityOverview": "RESUMEN DE SEGURIDAD",
-    "subtitle": "Estos son los indicadores actuales de VulnTrack.",
+    "subtitle": "Estas son las métricas actuales de seguridad de VulnTrack.",
     "loading": "Cargando estadísticas...",
     "totalFindings": "Hallazgos totales",
     "activeFindings": "Hallazgos activos",
@@ -77,17 +77,17 @@
     "unassignedFindings": "Hallazgos sin asignar"
   },
   "charts": {
-    "eyebrow": "ANÁLISIS",
-    "title": "Análisis de seguridad",
-    "description": "Evolución y distribución de los hallazgos registrados.",
-    "monthlyTrend": "Evolución mensual",
-    "monthlyTrendDescription": "Hallazgos detectados y cerrados por mes.",
+    "eyebrow": "ANALÍTICA",
+    "title": "Analítica de seguridad",
+    "description": "Tendencias y distribución de los hallazgos registrados.",
+    "monthlyTrend": "Tendencia mensual",
+    "monthlyTrendDescription": "Hallazgos detectados y cerrados cada mes.",
     "detected": "Detectados",
     "closed": "Cerrados",
     "priorities": "Hallazgos activos por prioridad",
-    "prioritiesDescription": "Distribución de hallazgos activos entre P1 y P4.",
+    "prioritiesDescription": "Distribución de hallazgos activos de P1 a P4.",
     "statuses": "Hallazgos por estado",
-    "statusesDescription": "Distribución del total de hallazgos registrados.",
+    "statusesDescription": "Distribución de todos los hallazgos registrados.",
     "findings": "Hallazgos",
     "noData": "No hay datos disponibles."
   },
@@ -96,9 +96,9 @@
     "title": "Actividad y exposición",
     "description": "Activos con más trabajo pendiente y últimos hallazgos registrados.",
     "topAssetsTitle": "Activos más afectados",
-    "topAssetsDescription": "Los cinco activos con mayor número de hallazgos pendientes.",
+    "topAssetsDescription": "Los cinco activos con mayor número de hallazgos activos.",
     "recentTitle": "Hallazgos recientes",
-    "recentDescription": "Los ocho últimos hallazgos registrados en la plataforma.",
+    "recentDescription": "Los ocho hallazgos registrados más recientemente.",
     "activeFindings": "Hallazgos activos",
     "assetBarLabel": "{{name}}: {{count}} hallazgos activos",
     "finding": "Hallazgo",
@@ -106,7 +106,7 @@
     "priority": "Prioridad",
     "status": "Estado",
     "assignee": "Responsable",
-    "detected": "Detección",
+    "detected": "Detectado",
     "dueDate": "Vencimiento",
     "overdue": "Vencido",
     "unassigned": "Sin asignar",
@@ -162,6 +162,11 @@
     "findingStatus": "Estado",
     "dueDate": "Vencimiento"
   },
+  "assetStatus": {
+    "ACTIVE": "Activo",
+    "INACTIVE": "Inactivo",
+    "DECOMMISSIONED": "Retirado"
+  },
   "assetType": {
     "SERVER": "Servidor",
     "WORKSTATION": "Estación de trabajo",
@@ -170,11 +175,6 @@
     "DATABASE": "Base de datos",
     "CLOUD": "Nube",
     "OTHER": "Otro"
-  },
-  "assetStatus": {
-    "ACTIVE": "Activo",
-    "INACTIVE": "Inactivo",
-    "DECOMMISSIONED": "Retirado"
   },
   "assetCriticality": {
     "CRITICAL": "Crítica",
@@ -257,6 +257,58 @@
     "OPERATING_SYSTEM": "Sistema operativo",
     "OTHER": "Otra"
   },
+  "findings": {
+    "eyebrow": "GESTIÓN DE RIESGO",
+    "title": "Hallazgos",
+    "description": "Seguimiento de vulnerabilidades detectadas en los activos de VulnTrack.",
+    "refresh": "Actualizar",
+    "loading": "Cargando hallazgos...",
+    "list": "Listado de hallazgos",
+    "visible_one": "{{count}} hallazgo encontrado",
+    "visible_other": "{{count}} hallazgos encontrados",
+    "search": "Buscar por código, activo, CVE o vulnerabilidad...",
+    "allPriorities": "Todas las prioridades",
+    "allStatuses": "Todos los estados",
+    "allDeadlines": "Todos los vencimientos",
+    "overdueOnly": "Solo vencidos",
+    "notOverdue": "No vencidos",
+    "empty": "No hay hallazgos disponibles.",
+    "code": "Código",
+    "asset": "Activo",
+    "vulnerability": "Vulnerabilidad",
+    "priority": "Prioridad",
+    "status": "Estado",
+    "assignedTo": "Responsable",
+    "dueDate": "Vencimiento",
+    "unassigned": "Sin asignar",
+    "overdue": "Vencido",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page": "Página {{page}} de {{totalPages}}"
+  },
+  "findingDetail": {
+    "back": "Volver a hallazgos",
+    "loading": "Cargando hallazgo...",
+    "error": "No se ha podido cargar el hallazgo.",
+    "information": "Información del hallazgo",
+    "asset": "Activo",
+    "assetCriticality": "Criticidad del activo",
+    "vulnerability": "Vulnerabilidad",
+    "severity": "Severidad",
+    "assignedTo": "Responsable",
+    "createdBy": "Registrado por",
+    "detectedAt": "Detectado",
+    "dueDate": "Vencimiento",
+    "closedAt": "Cerrado",
+    "updatedAt": "Última actualización",
+    "closureNote": "Justificación del cierre",
+    "evidence": "Evidencias",
+    "evidenceCount_one": "{{count}} evidencia adjunta",
+    "evidenceCount_other": "{{count}} evidencias adjuntas",
+    "noEvidence": "No hay evidencias adjuntas.",
+    "history": "Historial",
+    "noHistory": "No hay actividad registrada."
+  },
   "findingStatus": {
     "OPEN": "Abierto",
     "IN_PROGRESS": "En progreso",
@@ -265,18 +317,29 @@
     "ACCEPTED_RISK": "Riesgo aceptado",
     "FALSE_POSITIVE": "Falso positivo"
   },
+  "findingHistory": {
+    "CREATED": "Hallazgo creado",
+    "ASSIGNED": "Hallazgo asignado",
+    "UNASSIGNED": "Hallazgo desasignado",
+    "STATUS_CHANGED": "Estado actualizado",
+    "EVIDENCE_ADDED": "Evidencia añadida",
+    "EVIDENCE_REMOVED": "Evidencia eliminada",
+    "NOTE_ADDED": "Nota añadida"
+  },
   "errors": {
     "invalidCredentials": "El correo electrónico o la contraseña son incorrectos.",
-    "tooManyRequests": "Demasiados intentos de inicio de sesión. Inténtalo más tarde.",
-    "connection": "No se ha podido conectar con VulnTrack API. Comprueba que el backend está funcionando.",
-    "generic": "Se ha producido un error. Inténtalo de nuevo.",
+    "tooManyRequests": "Demasiados intentos de inicio de sesión. Inténtalo de nuevo más tarde.",
+    "connection": "No se puede conectar con la API de VulnTrack. Comprueba que el backend está funcionando.",
+    "generic": "Algo ha salido mal. Inténtalo de nuevo.",
     "dashboard": "No se han podido cargar las estadísticas del Dashboard.",
-    "assets": "No se ha podido cargar el inventario de activos."
+    "assets": "No se ha podido cargar el inventario de activos.",
+    "vulnerabilities": "No se ha podido cargar el catálogo de vulnerabilidades.",
+    "findings": "No se han podido cargar los hallazgos."
   },
   "status": {
-    "initialized": "INTERFAZ INICIALIZADA"
+    "initialized": "FRONTEND INICIALIZADO"
   },
   "footer": {
-    "tagline": "CREADO PARA UNA SEGURIDAD MEJOR"
+    "tagline": "CREADO PARA UNA MEJOR SEGURIDAD"
   }
 }
