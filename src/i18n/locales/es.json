@@ -326,6 +326,33 @@
     "EVIDENCE_REMOVED": "Evidencia eliminada",
     "NOTE_ADDED": "Nota añadida"
   },
+  "findingWorkflow": {
+    "title": "Gestión del hallazgo",
+    "description": "Actualiza la asignación, el estado y el seguimiento del hallazgo.",
+    "assignee": "Responsable",
+    "assign": "Guardar asignación",
+    "assignToMe": "Asignarme este hallazgo",
+    "changeStatus": "Cambiar estado",
+    "selectStatus": "Selecciona un estado",
+    "closingNote": "El cierre requiere una justificación de al menos 10 caracteres...",
+    "optionalNote": "Nota opcional sobre el cambio...",
+    "updateStatus": "Actualizar estado",
+    "addNote": "Añadir nota",
+    "notePlaceholder": "Escribe una nota de seguimiento...",
+    "saveNote": "Guardar nota",
+    "error": "No se ha podido realizar la operación."
+  },
+  "findingEvidence": {
+    "selectFile": "Seleccionar evidencia",
+    "help": "PNG, JPG, WEBP o PDF. Máximo 5 MB y 10 archivos por hallazgo.",
+    "upload": "Subir evidencia",
+    "uploading": "Subiendo...",
+    "download": "Descargar evidencia",
+    "delete": "Eliminar evidencia",
+    "invalidType": "El archivo debe ser PNG, JPG, WEBP o PDF.",
+    "tooLarge": "El archivo no puede superar los 5 MB.",
+    "error": "No se ha podido gestionar la evidencia."
+  },
   "errors": {
     "invalidCredentials": "El correo electrónico o la contraseña son incorrectos.",
     "tooManyRequests": "Demasiados intentos de inicio de sesión. Inténtalo de nuevo más tarde.",

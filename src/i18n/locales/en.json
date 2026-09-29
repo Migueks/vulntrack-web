@@ -326,6 +326,33 @@
     "EVIDENCE_REMOVED": "Evidence removed",
     "NOTE_ADDED": "Note added"
   },
+  "findingWorkflow": {
+    "title": "Finding management",
+    "description": "Update assignment, status and follow-up information.",
+    "assignee": "Assignee",
+    "assign": "Save assignment",
+    "assignToMe": "Assign this finding to me",
+    "changeStatus": "Change status",
+    "selectStatus": "Select a status",
+    "closingNote": "Closing requires a justification of at least 10 characters...",
+    "optionalNote": "Optional note about the change...",
+    "updateStatus": "Update status",
+    "addNote": "Add note",
+    "notePlaceholder": "Write a follow-up note...",
+    "saveNote": "Save note",
+    "error": "The operation could not be completed."
+  },
+  "findingEvidence": {
+    "selectFile": "Select evidence",
+    "help": "PNG, JPG, WEBP or PDF. Maximum 5 MB and 10 files per finding.",
+    "upload": "Upload evidence",
+    "uploading": "Uploading...",
+    "download": "Download evidence",
+    "delete": "Delete evidence",
+    "invalidType": "The file must be PNG, JPG, WEBP or PDF.",
+    "tooLarge": "The file cannot exceed 5 MB.",
+    "error": "The evidence operation could not be completed."
+  },
   "errors": {
     "invalidCredentials": "The email address or password is incorrect.",
     "tooManyRequests": "Too many sign-in attempts. Please try again later.",

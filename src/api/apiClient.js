@@ -97,3 +97,39 @@ export const apiRequest = async (
 
   return raw ? payload : payload?.data;
 };
+
+// Recupera archivos protegidos que no utilizan una respuesta JSON.
+export const apiFileRequest = async (endpoint) => {
+  const token = getToken();
+
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}/${endpoint.replace(/^\/+/, "")}`, {
+      headers: token
+        ? {
+            Authorization: `Bearer ${token}`,
+          }
+        : {},
+    });
+  } catch {
+    throw new ApiError(0, "Unable to connect to VulnTrack API.");
+  }
+
+  if (!response.ok) {
+    const payload = await response.json().catch(() => null);
+
+    if (response.status === 401 && token && token === getToken()) {
+      removeToken();
+
+      window.dispatchEvent(new Event("vulntrack:unauthorized"));
+    }
+
+    throw new ApiError(
+      response.status,
+      payload?.message ?? "Unable to download file.",
+    );
+  }
+
+  return response.blob();
+};

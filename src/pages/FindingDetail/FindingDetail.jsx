@@ -1,10 +1,4 @@
-import {
-  ArrowLeft,
-  ClipboardList,
-  FileText,
-  History,
-  ShieldAlert,
-} from "lucide-react";
+import { ArrowLeft, ClipboardList, History, ShieldAlert } from "lucide-react";
 
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -12,6 +6,8 @@ import { useNavigate, useParams } from "react-router";
 
 import { getFindingById } from "../../api/findingsApi";
 import AppLayout from "../../components/layout/AppLayout";
+import FindingWorkflow from "../../components/findings/FindingWorkflow";
+import FindingEvidence from "../../components/findings/FindingEvidence";
 
 import styles from "./FindingDetail.module.css";
 
@@ -179,42 +175,13 @@ function FindingDetail() {
             )}
           </section>
 
+          {/* Gestión del workflow */}
+
+          <FindingWorkflow key={finding.id} finding={finding} />
+
           {/* Evidencias */}
 
-          <section className={`${styles.card} ${styles.section}`}>
-            <div className={styles.cardTitle}>
-              <FileText size={18} aria-hidden="true" />
-
-              <div>
-                <h2>{t("findingDetail.evidence")}</h2>
-                <p>
-                  {t("findingDetail.evidenceCount", {
-                    count: finding.evidence?.length ?? 0,
-                  })}
-                </p>
-              </div>
-            </div>
-
-            {finding.evidence?.length ? (
-              <div className={styles.evidenceList}>
-                {finding.evidence.map((item) => (
-                  <div key={item.id} className={styles.evidenceItem}>
-                    <FileText size={16} aria-hidden="true" />
-
-                    <div>
-                      <strong>{item.originalName}</strong>
-                      <span>
-                        {item.uploadedBy?.name ?? "—"} ·{" "}
-                        {formatDate(item.uploadedAt)}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className={styles.empty}>{t("findingDetail.noEvidence")}</p>
-            )}
-          </section>
+          <FindingEvidence key={`evidence-${finding.id}`} finding={finding} />
 
           {/* Historial */}
 
