@@ -13,7 +13,8 @@
     "assets": "Activos",
     "vulnerabilities": "Vulnerabilidades",
     "findings": "Hallazgos",
-    "comingSoon": "Próximamente"
+    "comingSoon": "Próximamente",
+    "users": "Usuarios"
   },
   "layout": {
     "workspace": "Panel de seguridad",
@@ -361,7 +362,43 @@
     "dashboard": "No se han podido cargar las estadísticas del Dashboard.",
     "assets": "No se ha podido cargar el inventario de activos.",
     "vulnerabilities": "No se ha podido cargar el catálogo de vulnerabilidades.",
-    "findings": "No se han podido cargar los hallazgos."
+    "findings": "No se han podido cargar los hallazgos.",
+    "users": "No se ha podido cargar la lista de usuarios."
+  },
+  "users": {
+    "eyebrow": "ADMINISTRACIÓN",
+    "title": "Usuarios",
+    "description": "Gestiona las cuentas y permisos de acceso a VulnTrack.",
+    "refresh": "Actualizar",
+    "loading": "Cargando usuarios...",
+    "list": "Usuarios registrados",
+    "visible_one": "{{count}} usuario mostrado",
+    "visible_other": "{{count}} usuarios mostrados",
+    "search": "Buscar por código, nombre o correo...",
+    "allRoles": "Todos los roles",
+    "allStatuses": "Todos los estados",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "empty": "No se han encontrado usuarios.",
+    "code": "Código",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "role": "Rol",
+    "status": "Estado",
+    "create": "Crear usuario",
+    "createTitle": "Nueva cuenta",
+    "createDescription": "Crea una cuenta y asigna su nivel de acceso.",
+    "editTitle": "Editar usuario",
+    "editDescription": "Modifica los datos y permisos de la cuenta.",
+    "password": "Contraseña inicial",
+    "passwordHelp": "Debe contener al menos 15 caracteres.",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar formulario",
+    "actions": "Acciones",
+    "edit": "Editar usuario",
+    "activate": "Activar usuario",
+    "deactivate": "Desactivar usuario"
   },
   "status": {
     "initialized": "FRONTEND INICIALIZADO"

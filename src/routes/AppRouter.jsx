@@ -11,6 +11,7 @@ import Vulnerabilities from "../pages/Vulnerabilities/Vulnerabilities";
 import VulnerabilityDetail from "../pages/VulnerabilityDetail/VulnerabilityDetail";
 import Findings from "../pages/Findings/Findings";
 import FindingDetail from "../pages/FindingDetail/FindingDetail";
+import Users from "../pages/Users/Users";
 
 function AppRouter() {
   return (
@@ -95,6 +96,17 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <FindingDetail />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Administración de usuarios */}
+
+      <Route
+        path="/users"
+        element={
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <Users />
           </ProtectedRoute>
         }
       />

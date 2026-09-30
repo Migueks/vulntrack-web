@@ -69,12 +69,14 @@ function FindingWorkflow({ finding }) {
   const allowedStatuses = getAllowedStatuses(finding.status, isAdmin);
 
   // ADMIN necesita conocer los usuarios disponibles para asignar trabajo.
-  const { data: users = [] } = useQuery({
+  const { data: usersData } = useQuery({
     queryKey: ["users", "assignment"],
-    queryFn: getUsers,
+    queryFn: () => getUsers({ page: 1, limit: 100 }),
     enabled: isAdmin,
     staleTime: 60_000,
   });
+
+  const users = usersData?.users ?? [];
 
   const assignableUsers = users.filter(
     (item) => item.isActive && ["ADMIN", "ANALYST"].includes(item.role),

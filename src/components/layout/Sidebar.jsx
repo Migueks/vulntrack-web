@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   ShieldAlert,
   ShieldCheck,
+  UsersRound,
 } from "lucide-react";
 
 import { NavLink } from "react-router";
@@ -40,7 +41,6 @@ const UPCOMING_MODULES = [];
 
 function Sidebar({ isOpen, onNavigate }) {
   const { t } = useTranslation();
-
   const { user } = useAuth();
 
   return (
@@ -85,6 +85,25 @@ function Sidebar({ isOpen, onNavigate }) {
           );
         })}
 
+        {/* Administración */}
+
+        {user?.role === "ADMIN" && (
+          <NavLink
+            to="/users"
+            end
+            onClick={onNavigate}
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+          >
+            <UsersRound size={19} aria-hidden="true" />
+
+            <span>{t("navigation.users")}</span>
+          </NavLink>
+        )}
+
+        {/* Próximamente */}
+
         {UPCOMING_MODULES.map((module) => {
           const Icon = module.icon;
 
@@ -116,7 +135,7 @@ function Sidebar({ isOpen, onNavigate }) {
         <div className={styles.userInfo}>
           <strong>{user?.name}</strong>
 
-          <span>{user?.role}</span>
+          <span>{t(`roles.${user?.role}`)}</span>
         </div>
       </div>
     </aside>

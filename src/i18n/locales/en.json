@@ -13,7 +13,8 @@
     "assets": "Assets",
     "vulnerabilities": "Vulnerabilities",
     "findings": "Findings",
-    "comingSoon": "Soon"
+    "comingSoon": "Soon",
+    "users": "Users"
   },
   "layout": {
     "workspace": "Security dashboard",
@@ -361,7 +362,43 @@
     "dashboard": "Unable to load the Dashboard statistics.",
     "assets": "Unable to load the asset inventory.",
     "vulnerabilities": "Unable to load the vulnerability catalog.",
-    "findings": "Unable to load the findings."
+    "findings": "Unable to load the findings.",
+    "users": "Unable to load the user list."
+  },
+  "users": {
+    "eyebrow": "ADMINISTRATION",
+    "title": "Users",
+    "description": "Manage VulnTrack accounts and access permissions.",
+    "refresh": "Refresh",
+    "loading": "Loading users...",
+    "list": "Registered users",
+    "visible_one": "{{count}} user shown",
+    "visible_other": "{{count}} users shown",
+    "search": "Search by code, name or email...",
+    "allRoles": "All roles",
+    "allStatuses": "All statuses",
+    "active": "Active",
+    "inactive": "Inactive",
+    "empty": "No users found.",
+    "code": "Code",
+    "name": "Name",
+    "email": "Email address",
+    "role": "Role",
+    "status": "Status",
+    "create": "Create user",
+    "createTitle": "New account",
+    "createDescription": "Create an account and assign its access level.",
+    "editTitle": "Edit user",
+    "editDescription": "Update the account details and permissions.",
+    "password": "Initial password",
+    "passwordHelp": "It must contain at least 15 characters.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close form",
+    "actions": "Actions",
+    "edit": "Edit user",
+    "activate": "Activate user",
+    "deactivate": "Deactivate user"
   },
   "status": {
     "initialized": "FRONTEND INITIALIZED"
