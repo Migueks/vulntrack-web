@@ -51,6 +51,9 @@ function Users() {
   const [editingUserId, setEditingUserId] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
 
+  // Feedback de operaciones correctas.
+  const [successMessage, setSuccessMessage] = useState("");
+
   const deferredSearch = useDeferredValue(search);
 
   const { data, isPending, isError, refetch, isFetching } = useQuery({
@@ -89,10 +92,19 @@ function Users() {
     });
   };
 
+  // Restablece y cierra el formulario.
+  const closeForm = () => {
+    setFormMode(null);
+    setEditingUserId(null);
+    setForm(EMPTY_FORM);
+  };
+
   const createMutation = useMutation({
     mutationFn: createUser,
 
     onSuccess: async () => {
+      setSuccessMessage(t("users.createSuccess"));
+
       closeForm();
       await refreshUsers();
     },
@@ -102,6 +114,8 @@ function Users() {
     mutationFn: ({ id, data }) => updateUser(id, data),
 
     onSuccess: async () => {
+      setSuccessMessage(t("users.updateSuccess"));
+
       closeForm();
       await refreshUsers();
     },
@@ -110,11 +124,21 @@ function Users() {
   const statusMutation = useMutation({
     mutationFn: ({ id, isActive }) => updateUserStatus(id, isActive),
 
-    onSuccess: refreshUsers,
+    onSuccess: async (_, variables) => {
+      setSuccessMessage(
+        variables.isActive
+          ? t("users.activateSuccess")
+          : t("users.deactivateSuccess"),
+      );
+
+      await refreshUsers();
+    },
   });
 
   // Abre un formulario limpio para una nueva cuenta.
   const openCreateForm = () => {
+    setSuccessMessage("");
+
     setFormMode("create");
     setEditingUserId(null);
     setForm(EMPTY_FORM);
@@ -122,6 +146,8 @@ function Users() {
 
   // Carga los datos editables del usuario seleccionado.
   const openEditForm = (user) => {
+    setSuccessMessage("");
+
     setFormMode("edit");
     setEditingUserId(user.id);
 
@@ -131,12 +157,6 @@ function Users() {
       password: "",
       role: user.role,
     });
-  };
-
-  const closeForm = () => {
-    setFormMode(null);
-    setEditingUserId(null);
-    setForm(EMPTY_FORM);
   };
 
   const handleChange = (event) => {
@@ -151,6 +171,8 @@ function Users() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    setSuccessMessage("");
+
     if (formMode === "create") {
       createMutation.mutate(form);
       return;
@@ -158,11 +180,33 @@ function Users() {
 
     updateMutation.mutate({
       id: editingUserId,
+
       data: {
         name: form.name,
         email: form.email,
         role: form.role,
       },
+    });
+  };
+
+  // Solicita confirmación antes de desactivar una cuenta.
+  const handleStatusToggle = (user) => {
+    setSuccessMessage("");
+
+    if (
+      user.isActive &&
+      !window.confirm(
+        t("users.confirmDeactivate", {
+          name: user.name,
+        }),
+      )
+    ) {
+      return;
+    }
+
+    statusMutation.mutate({
+      id: user.id,
+      isActive: !user.isActive,
     });
   };
 
@@ -183,6 +227,7 @@ function Users() {
           </span>
 
           <h1>{t("users.title")}</h1>
+
           <p>{t("users.description")}</p>
         </div>
 
@@ -208,6 +253,7 @@ function Users() {
             onClick={openCreateForm}
           >
             <UserPlus size={16} aria-hidden="true" />
+
             {t("users.create")}
           </button>
         </div>
@@ -319,6 +365,7 @@ function Users() {
                 disabled={createMutation.isPending || updateMutation.isPending}
               >
                 <Save size={16} aria-hidden="true" />
+
                 {t("users.save")}
               </button>
             </div>
@@ -333,6 +380,12 @@ function Users() {
       {isError && <div className={styles.error}>{t("errors.users")}</div>}
 
       {mutationError && <div className={styles.error}>{mutationError}</div>}
+
+      {successMessage && (
+        <div className={styles.success} role="status">
+          {successMessage}
+        </div>
+      )}
 
       {/* Listado */}
 
@@ -373,8 +426,11 @@ function Users() {
               onChange={(event) => setRole(event.target.value)}
             >
               <option value="">{t("users.allRoles")}</option>
+
               <option value="ADMIN">{t("roles.ADMIN")}</option>
+
               <option value="ANALYST">{t("roles.ANALYST")}</option>
+
               <option value="VIEWER">{t("roles.VIEWER")}</option>
             </select>
 
@@ -383,7 +439,9 @@ function Users() {
               onChange={(event) => setStatus(event.target.value)}
             >
               <option value="">{t("users.allStatuses")}</option>
+
               <option value="true">{t("users.active")}</option>
+
               <option value="false">{t("users.inactive")}</option>
             </select>
           </div>
@@ -391,6 +449,7 @@ function Users() {
           {filteredUsers.length === 0 ? (
             <div className={styles.empty}>
               <UsersRound size={32} aria-hidden="true" />
+
               <p>{t("users.empty")}</p>
             </div>
           ) : (
@@ -460,12 +519,7 @@ function Users() {
                                   ? styles.deactivateButton
                                   : styles.activateButton
                               }
-                              onClick={() =>
-                                statusMutation.mutate({
-                                  id: user.id,
-                                  isActive: !user.isActive,
-                                })
-                              }
+                              onClick={() => handleStatusToggle(user)}
                               disabled={
                                 isCurrentUser || statusMutation.isPending
                               }

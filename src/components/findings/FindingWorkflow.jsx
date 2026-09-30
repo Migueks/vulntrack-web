@@ -55,8 +55,13 @@ function FindingWorkflow({ finding }) {
   );
 
   const [nextStatus, setNextStatus] = useState("");
+
   const [statusNote, setStatusNote] = useState("");
+
   const [historyNote, setHistoryNote] = useState("");
+
+  // Feedback de operaciones correctas.
+  const [successMessage, setSuccessMessage] = useState("");
 
   // Permisos derivados del usuario actual.
   const isAdmin = user?.role === "ADMIN";
@@ -71,7 +76,13 @@ function FindingWorkflow({ finding }) {
   // ADMIN necesita conocer los usuarios disponibles para asignar trabajo.
   const { data: usersData } = useQuery({
     queryKey: ["users", "assignment"],
-    queryFn: () => getUsers({ page: 1, limit: 100 }),
+
+    queryFn: () =>
+      getUsers({
+        page: 1,
+        limit: 100,
+      }),
+
     enabled: isAdmin,
     staleTime: 60_000,
   });
@@ -104,7 +115,11 @@ function FindingWorkflow({ finding }) {
     mutationFn: (newAssigneeId) =>
       assignFinding(finding.id, newAssigneeId || null),
 
-    onSuccess: refreshFinding,
+    onSuccess: async () => {
+      setSuccessMessage(t("findingWorkflow.assignmentSuccess"));
+
+      await refreshFinding();
+    },
   });
 
   // Gestiona el cambio de estado.
@@ -112,6 +127,8 @@ function FindingWorkflow({ finding }) {
     mutationFn: () => updateFindingStatus(finding.id, nextStatus, statusNote),
 
     onSuccess: async () => {
+      setSuccessMessage(t("findingWorkflow.statusSuccess"));
+
       setNextStatus("");
       setStatusNote("");
 
@@ -124,6 +141,8 @@ function FindingWorkflow({ finding }) {
     mutationFn: () => addFindingNote(finding.id, historyNote),
 
     onSuccess: async () => {
+      setSuccessMessage(t("findingWorkflow.noteSuccess"));
+
       setHistoryNote("");
 
       await refreshFinding();
@@ -133,6 +152,36 @@ function FindingWorkflow({ finding }) {
   const requiresClosingNote = CLOSING_STATUSES.includes(nextStatus);
 
   const canAddNote = isAdmin || (isAssignedAnalyst && !isClosed);
+
+  const handleAssignment = (assigneeId) => {
+    setSuccessMessage("");
+
+    assignmentMutation.mutate(assigneeId);
+  };
+
+  // Los estados finales requieren confirmación explícita.
+  const handleStatusUpdate = () => {
+    setSuccessMessage("");
+
+    if (
+      requiresClosingNote &&
+      !window.confirm(
+        t("findingWorkflow.confirmClose", {
+          status: t(`findingStatus.${nextStatus}`),
+        }),
+      )
+    ) {
+      return;
+    }
+
+    statusMutation.mutate();
+  };
+
+  const handleAddNote = () => {
+    setSuccessMessage("");
+
+    noteMutation.mutate();
+  };
 
   return (
     <section className={styles.card}>
@@ -158,7 +207,11 @@ function FindingWorkflow({ finding }) {
             <select
               id="finding-assignee"
               value={assignedToId}
-              onChange={(event) => setAssignedToId(event.target.value)}
+              onChange={(event) => {
+                setAssignedToId(event.target.value);
+
+                setSuccessMessage("");
+              }}
             >
               {finding.status === "OPEN" && (
                 <option value="">{t("findings.unassigned")}</option>
@@ -173,7 +226,7 @@ function FindingWorkflow({ finding }) {
 
             <button
               type="button"
-              onClick={() => assignmentMutation.mutate(assignedToId)}
+              onClick={() => handleAssignment(assignedToId)}
               disabled={assignmentMutation.isPending}
             >
               <UserCheck size={16} aria-hidden="true" />
@@ -192,7 +245,7 @@ function FindingWorkflow({ finding }) {
           <div className={styles.block}>
             <button
               type="button"
-              onClick={() => assignmentMutation.mutate(user.id)}
+              onClick={() => handleAssignment(user.id)}
               disabled={assignmentMutation.isPending}
             >
               <UserCheck size={16} aria-hidden="true" />
@@ -213,7 +266,12 @@ function FindingWorkflow({ finding }) {
           <select
             id="finding-status"
             value={nextStatus}
-            onChange={(event) => setNextStatus(event.target.value)}
+            onChange={(event) => {
+              setNextStatus(event.target.value);
+
+              setStatusNote("");
+              setSuccessMessage("");
+            }}
           >
             <option value="">{t("findingWorkflow.selectStatus")}</option>
 
@@ -227,7 +285,11 @@ function FindingWorkflow({ finding }) {
           {nextStatus && (
             <textarea
               value={statusNote}
-              onChange={(event) => setStatusNote(event.target.value)}
+              onChange={(event) => {
+                setStatusNote(event.target.value);
+
+                setSuccessMessage("");
+              }}
               placeholder={
                 requiresClosingNote
                   ? t("findingWorkflow.closingNote")
@@ -239,7 +301,7 @@ function FindingWorkflow({ finding }) {
 
           <button
             type="button"
-            onClick={() => statusMutation.mutate()}
+            onClick={handleStatusUpdate}
             disabled={
               !nextStatus ||
               statusMutation.isPending ||
@@ -262,14 +324,18 @@ function FindingWorkflow({ finding }) {
           <textarea
             id="finding-note"
             value={historyNote}
-            onChange={(event) => setHistoryNote(event.target.value)}
+            onChange={(event) => {
+              setHistoryNote(event.target.value);
+
+              setSuccessMessage("");
+            }}
             placeholder={t("findingWorkflow.notePlaceholder")}
             rows={3}
           />
 
           <button
             type="button"
-            onClick={() => noteMutation.mutate()}
+            onClick={handleAddNote}
             disabled={historyNote.trim().length < 3 || noteMutation.isPending}
           >
             <Save size={16} aria-hidden="true" />
@@ -277,6 +343,14 @@ function FindingWorkflow({ finding }) {
             {t("findingWorkflow.saveNote")}
           </button>
         </div>
+      )}
+
+      {/* Confirmación de operaciones */}
+
+      {successMessage && (
+        <p className={styles.success} role="status">
+          {successMessage}
+        </p>
       )}
 
       {/* Errores */}

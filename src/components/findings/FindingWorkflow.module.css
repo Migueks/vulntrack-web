@@ -113,9 +113,16 @@
   opacity: 0.5;
 }
 
+/* Mensajes */
+
+.success {
+  margin-bottom: 0;
+  color: var(--color-success);
+  font-size: 0.8125rem;
+}
+
 .error {
   margin-bottom: 0;
-
   color: var(--color-danger);
   font-size: 0.8125rem;
 }

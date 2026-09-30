@@ -180,6 +180,16 @@
   font-size: 0.8125rem;
 }
 
+/* Mensajes de éxito */
+
+.success {
+  margin-bottom: 0;
+
+  color: var(--color-success);
+
+  font-size: 0.8125rem;
+}
+
 /* Responsive */
 
 @media (max-width: 40rem) {

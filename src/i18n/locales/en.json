@@ -341,7 +341,11 @@
     "addNote": "Add note",
     "notePlaceholder": "Write a follow-up note...",
     "saveNote": "Save note",
-    "error": "The operation could not be completed."
+    "error": "The operation could not be completed.",
+    "assignmentSuccess": "Assignment updated successfully.",
+    "statusSuccess": "Status updated successfully.",
+    "noteSuccess": "Note added successfully.",
+    "confirmClose": "Are you sure you want to change the finding to «{{status}}»? This is a closing status."
   },
   "findingEvidence": {
     "selectFile": "Select evidence",
@@ -352,7 +356,10 @@
     "delete": "Delete evidence",
     "invalidType": "The file must be PNG, JPG, WEBP or PDF.",
     "tooLarge": "The file cannot exceed 5 MB.",
-    "error": "The evidence operation could not be completed."
+    "error": "The evidence operation could not be completed.",
+    "confirmDelete": "Are you sure you want to delete the evidence {{name}}?",
+    "uploadSuccess": "Evidence uploaded successfully.",
+    "deleteSuccess": "Evidence deleted successfully."
   },
   "errors": {
     "invalidCredentials": "The email address or password is incorrect.",
@@ -399,7 +406,12 @@
     "actions": "Actions",
     "edit": "Edit user",
     "activate": "Activate user",
-    "deactivate": "Deactivate user"
+    "deactivate": "Deactivate user",
+    "confirmDeactivate": "Are you sure you want to disable {{name}}'s account?",
+    "createSuccess": "User created successfully.",
+    "updateSuccess": "User updated successfully.",
+    "activateSuccess": "User activated successfully.",
+    "deactivateSuccess": "User disabled successfully."
   },
   "status": {
     "initialized": "FRONTEND INITIALIZED"

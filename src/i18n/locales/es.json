@@ -341,7 +341,11 @@
     "addNote": "Añadir nota",
     "notePlaceholder": "Escribe una nota de seguimiento...",
     "saveNote": "Guardar nota",
-    "error": "No se ha podido realizar la operación."
+    "error": "No se ha podido realizar la operación.",
+    "assignmentSuccess": "Asignación actualizada correctamente.",
+    "statusSuccess": "Estado actualizado correctamente.",
+    "noteSuccess": "Nota añadida correctamente.",
+    "confirmClose": "¿Seguro que quieres cambiar el hallazgo al estado «{{status}}»? Este es un estado de cierre."
   },
   "findingEvidence": {
     "selectFile": "Seleccionar evidencia",
@@ -352,7 +356,10 @@
     "delete": "Eliminar evidencia",
     "invalidType": "El archivo debe ser PNG, JPG, WEBP o PDF.",
     "tooLarge": "El archivo no puede superar los 5 MB.",
-    "error": "No se ha podido gestionar la evidencia."
+    "error": "No se ha podido gestionar la evidencia.",
+    "confirmDelete": "¿Seguro que quieres eliminar la evidencia {{name}}?",
+    "uploadSuccess": "Evidencia subida correctamente.",
+    "deleteSuccess": "Evidencia eliminada correctamente."
   },
   "errors": {
     "invalidCredentials": "El correo electrónico o la contraseña son incorrectos.",
@@ -399,7 +406,12 @@
     "actions": "Acciones",
     "edit": "Editar usuario",
     "activate": "Activar usuario",
-    "deactivate": "Desactivar usuario"
+    "deactivate": "Desactivar usuario",
+    "confirmDeactivate": "¿Seguro que quieres desactivar la cuenta de {{name}}?",
+    "createSuccess": "Usuario creado correctamente.",
+    "updateSuccess": "Usuario actualizado correctamente.",
+    "activateSuccess": "Usuario activado correctamente.",
+    "deactivateSuccess": "Usuario desactivado correctamente."
   },
   "status": {
     "initialized": "FRONTEND INICIALIZADO"

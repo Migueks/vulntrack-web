@@ -36,6 +36,7 @@ function FindingEvidence({ finding }) {
 
   const [file, setFile] = useState(null);
   const [clientError, setClientError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const isAdmin = user?.role === "ADMIN";
 
@@ -47,6 +48,8 @@ function FindingEvidence({ finding }) {
   const canManage = !isClosed && (isAdmin || isAssignedAnalyst);
 
   const canDownload = isAdmin || isAssignedAnalyst;
+
+  const evidence = finding.evidence ?? [];
 
   // Refresca el detalle y su historial después de cada operación.
   const refreshFinding = async () => {
@@ -62,6 +65,8 @@ function FindingEvidence({ finding }) {
       setFile(null);
       setClientError("");
 
+      setSuccessMessage(t("findingEvidence.uploadSuccess"));
+
       await refreshFinding();
     },
   });
@@ -69,12 +74,18 @@ function FindingEvidence({ finding }) {
   const deleteMutation = useMutation({
     mutationFn: (evidenceId) => deleteFindingEvidence(finding.id, evidenceId),
 
-    onSuccess: refreshFinding,
+    onSuccess: async () => {
+      setClientError("");
+
+      setSuccessMessage(t("findingEvidence.deleteSuccess"));
+
+      await refreshFinding();
+    },
   });
 
   const downloadMutation = useMutation({
-    mutationFn: (evidence) =>
-      downloadFindingEvidence(finding.id, evidence.id, evidence.originalName),
+    mutationFn: (item) =>
+      downloadFindingEvidence(finding.id, item.id, item.originalName),
   });
 
   // Comprueba formato y tamaño antes de enviar el archivo.
@@ -82,6 +93,7 @@ function FindingEvidence({ finding }) {
     const selectedFile = event.target.files?.[0];
 
     setClientError("");
+    setSuccessMessage("");
 
     if (!selectedFile) {
       setFile(null);
@@ -109,9 +121,34 @@ function FindingEvidence({ finding }) {
     setFile(selectedFile);
   };
 
+  const handleUpload = () => {
+    setClientError("");
+    setSuccessMessage("");
+
+    uploadMutation.mutate();
+  };
+
+  // Solicita confirmación antes de eliminar una evidencia.
+  const handleDelete = (item) => {
+    setClientError("");
+    setSuccessMessage("");
+
+    const confirmed = window.confirm(
+      t("findingEvidence.confirmDelete", {
+        name: item.originalName,
+      }),
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    deleteMutation.mutate(item.id);
+  };
+
   // Solo ADMIN puede borrar archivos subidos por otros usuarios.
-  const canDeleteEvidence = (evidence) =>
-    canManage && (isAdmin || evidence.uploadedBy?.id === user?.id);
+  const canDeleteEvidence = (item) =>
+    canManage && (isAdmin || item.uploadedBy?.id === user?.id);
 
   const formatDate = (date) =>
     new Date(date).toLocaleDateString(
@@ -128,7 +165,7 @@ function FindingEvidence({ finding }) {
 
           <p>
             {t("findingDetail.evidenceCount", {
-              count: finding.evidence?.length ?? 0,
+              count: evidence.length,
             })}
           </p>
         </div>
@@ -136,7 +173,7 @@ function FindingEvidence({ finding }) {
 
       {/* Subida */}
 
-      {canManage && finding.evidence.length < MAX_EVIDENCE_COUNT && (
+      {canManage && evidence.length < MAX_EVIDENCE_COUNT && (
         <div className={styles.upload}>
           <label htmlFor="finding-evidence">
             {t("findingEvidence.selectFile")}
@@ -161,7 +198,7 @@ function FindingEvidence({ finding }) {
 
           <button
             type="button"
-            onClick={() => uploadMutation.mutate()}
+            onClick={handleUpload}
             disabled={!file || uploadMutation.isPending}
           >
             <Upload size={16} aria-hidden="true" />
@@ -173,20 +210,27 @@ function FindingEvidence({ finding }) {
         </div>
       )}
 
+      {/* Confirmación de operaciones */}
+
+      {successMessage && (
+        <p className={styles.success} role="status">
+          {successMessage}
+        </p>
+      )}
+
       {/* Listado */}
 
-      {finding.evidence?.length ? (
+      {evidence.length ? (
         <div className={styles.list}>
-          {finding.evidence.map((evidence) => (
-            <div key={evidence.id} className={styles.item}>
+          {evidence.map((item) => (
+            <div key={item.id} className={styles.item}>
               <FileText size={18} aria-hidden="true" />
 
               <div className={styles.info}>
-                <strong>{evidence.originalName}</strong>
+                <strong>{item.originalName}</strong>
 
                 <span>
-                  {evidence.uploadedBy?.name ?? "—"} ·{" "}
-                  {formatDate(evidence.uploadedAt)}
+                  {item.uploadedBy?.name ?? "—"} · {formatDate(item.uploadedAt)}
                 </span>
               </div>
 
@@ -194,7 +238,7 @@ function FindingEvidence({ finding }) {
                 {canDownload && (
                   <button
                     type="button"
-                    onClick={() => downloadMutation.mutate(evidence)}
+                    onClick={() => downloadMutation.mutate(item)}
                     disabled={downloadMutation.isPending}
                     aria-label={t("findingEvidence.download")}
                   >
@@ -202,11 +246,11 @@ function FindingEvidence({ finding }) {
                   </button>
                 )}
 
-                {canDeleteEvidence(evidence) && (
+                {canDeleteEvidence(item) && (
                   <button
                     type="button"
                     className={styles.deleteButton}
-                    onClick={() => deleteMutation.mutate(evidence.id)}
+                    onClick={() => handleDelete(item)}
                     disabled={deleteMutation.isPending}
                     aria-label={t("findingEvidence.delete")}
                   >
