@@ -363,7 +363,8 @@
     "assets": "Unable to load the asset inventory.",
     "vulnerabilities": "Unable to load the vulnerability catalog.",
     "findings": "Unable to load the findings.",
-    "users": "Unable to load the user list."
+    "users": "Unable to load the user list.",
+    "accountInactive": "Your account is disabled. Contact an administrator."
   },
   "users": {
     "eyebrow": "ADMINISTRATION",

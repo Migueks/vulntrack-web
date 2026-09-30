@@ -27,11 +27,12 @@ export const removeToken = () => {
 
 // Representa un error devuelto por nuestra API.
 export class ApiError extends Error {
-  constructor(status, message) {
+  constructor(status, message, code = null) {
     super(message);
 
     this.name = "ApiError";
     this.status = status;
+    this.code = code;
   }
 }
 
@@ -92,6 +93,7 @@ export const apiRequest = async (
     throw new ApiError(
       response.status,
       payload?.message ?? "API request failed.",
+      payload?.code ?? null,
     );
   }
 

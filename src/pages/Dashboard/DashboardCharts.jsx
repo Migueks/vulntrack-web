@@ -38,6 +38,7 @@ const TOOLTIP_STYLE = {
   border: "1px solid #3f3f46",
   borderRadius: "0.625rem",
   color: "#f4f4f5",
+  boxShadow: "0 10px 30px rgb(0 0 0 / 35%)",
 };
 
 function DashboardCharts({ overview }) {
@@ -146,7 +147,14 @@ function DashboardCharts({ overview }) {
                     />
 
                     <Tooltip
+                      cursor={{ stroke: "#3f3f46" }}
                       contentStyle={TOOLTIP_STYLE}
+                      labelStyle={{
+                        color: "#a1a1aa",
+                      }}
+                      itemStyle={{
+                        color: "#f4f4f5",
+                      }}
                       labelFormatter={formatMonth}
                       formatter={(value) => formatNumber(value)}
                     />
@@ -236,7 +244,14 @@ function DashboardCharts({ overview }) {
                   />
 
                   <Tooltip
+                    cursor={{ fill: "transparent" }}
                     contentStyle={TOOLTIP_STYLE}
+                    labelStyle={{
+                      color: "#a1a1aa",
+                    }}
+                    itemStyle={{
+                      color: "#f4f4f5",
+                    }}
                     formatter={(value) => [
                       formatNumber(value),
                       t("charts.findings"),
@@ -296,6 +311,12 @@ function DashboardCharts({ overview }) {
 
                     <Tooltip
                       contentStyle={TOOLTIP_STYLE}
+                      labelStyle={{
+                        color: "#a1a1aa",
+                      }}
+                      itemStyle={{
+                        color: "#f4f4f5",
+                      }}
                       formatter={(value) => formatNumber(value)}
                     />
                   </PieChart>

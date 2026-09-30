@@ -363,7 +363,8 @@
     "assets": "No se ha podido cargar el inventario de activos.",
     "vulnerabilities": "No se ha podido cargar el catálogo de vulnerabilidades.",
     "findings": "No se han podido cargar los hallazgos.",
-    "users": "No se ha podido cargar la lista de usuarios."
+    "users": "No se ha podido cargar la lista de usuarios.",
+    "accountInactive": "Tu cuenta está desactivada. Contacta con un administrador."
   },
   "users": {
     "eyebrow": "ADMINISTRACIÓN",

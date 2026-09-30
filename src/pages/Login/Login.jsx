@@ -64,6 +64,10 @@ function Login() {
       return null;
     }
 
+    if (error.code === "USER_INACTIVE") {
+      return t("errors.accountInactive");
+    }
+
     if (error.status === 401) {
       return t("errors.invalidCredentials");
     }
