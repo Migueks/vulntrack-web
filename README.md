@@ -49,6 +49,7 @@ src/
 │   ├── Home/
 │   ├── Login/
 │   ├── NotFound/
+│   ├── Profile/
 │   ├── Users/
 │   ├── Vulnerabilities/
 │   └── VulnerabilityDetail/
@@ -143,6 +144,21 @@ Módulo disponible exclusivamente para ADMIN.
 - Feedback visual de operaciones.
 - Interfaz responsive con tarjetas en pantallas pequeñas.
 
+### Profile
+
+Disponible para cualquier usuario autenticado.
+
+- Acceso desde el bloque de usuario del Sidebar.
+- Consulta del código de usuario y rol.
+- Edición del nombre y correo electrónico.
+- Confirmación del correo electrónico antes de guardar cambios.
+- Validación para impedir guardar correos que no coincidan.
+- Cambio de contraseña desde la propia interfaz.
+- Validación de la contraseña actual.
+- Confirmación de la nueva contraseña.
+- Cierre automático de sesión después de cambiar la contraseña.
+- Actualización inmediata de los datos visibles del usuario en la interfaz.
+
 ### Internacionalización
 
 La interfaz está disponible en:
@@ -164,6 +180,8 @@ Las traducciones se gestionan mediante `i18next` y `react-i18next`.
 | Añadir notas | Sí | Según asignación | No |
 | Gestionar evidencias | Sí | Según asignación | No |
 | Descargar evidencias | Sí | Según asignación | No |
+| Gestionar perfil propio | Sí | Sí | Sí |
+| Cambiar contraseña propia | Sí | Sí | Sí |
 | Gestionar usuarios | Sí | No | No |
 
 La interfaz adapta las acciones disponibles al rol del usuario, pero **la autorización definitiva siempre se valida en el backend**.
@@ -181,6 +199,7 @@ La interfaz adapta las acciones disponibles al rol del usuario, pero **la autori
 | `/vulnerabilities/:id` | Autenticado | Detalle de vulnerabilidad |
 | `/findings` | Autenticado | Listado de hallazgos |
 | `/findings/:id` | Autenticado | Detalle y workflow del hallazgo |
+| `/profile` | Autenticado | Gestión del perfil personal y cambio de contraseña |
 | `/users` | ADMIN | Administración de usuarios |
 | `*` | Pública/Autenticada | Página 404 |
 
@@ -228,6 +247,15 @@ Las peticiones privadas envían:
 ```http
 Authorization: Bearer <JWT>
 ```
+
+El módulo de perfil utiliza los endpoints:
+
+```http
+PATCH /users/me
+PATCH /users/me/password
+```
+
+Tras cambiar la contraseña, el backend invalida el JWT actual y el frontend cierra la sesión para solicitar una nueva autenticación.
 
 `apiClient.js` se encarga de:
 
