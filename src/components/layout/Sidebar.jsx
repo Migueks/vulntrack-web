@@ -107,8 +107,6 @@ function Sidebar({ isOpen, onNavigate }) {
           </NavLink>
         )}
 
-        {/* Próximamente */}
-
         {UPCOMING_MODULES.map((module) => {
           const Icon = module.icon;
 
@@ -130,9 +128,17 @@ function Sidebar({ isOpen, onNavigate }) {
         })}
       </nav>
 
-      {/* Usuario */}
+      {/* Perfil */}
 
-      <div className={styles.footer}>
+      <NavLink
+        to="/profile"
+        end
+        onClick={onNavigate}
+        aria-label={t("navigation.profile")}
+        className={({ isActive }) =>
+          `${styles.footer} ${isActive ? styles.footerActive : ""}`
+        }
+      >
         <div className={styles.avatar}>
           {user?.name?.charAt(0).toUpperCase() ?? "V"}
         </div>
@@ -142,7 +148,7 @@ function Sidebar({ isOpen, onNavigate }) {
 
           <span>{t(`roles.${user?.role}`)}</span>
         </div>
-      </div>
+      </NavLink>
     </aside>
   );
 }

@@ -127,6 +127,12 @@ function Login() {
 
           <p className={styles.subtitle}>{t("login.subtitle")}</p>
 
+          {location.state?.passwordChanged && (
+            <div className={styles.success} role="status">
+              {t("profile.passwordChanged")}
+            </div>
+          )}
+
           <form className={styles.form} onSubmit={handleSubmit}>
             {/* Correo electrónico */}
 

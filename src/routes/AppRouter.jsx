@@ -19,6 +19,8 @@ const Assets = lazy(() => import("../pages/Assets/Assets"));
 
 const AssetDetail = lazy(() => import("../pages/AssetDetail/AssetDetail"));
 
+const Profile = lazy(() => import("../pages/Profile/Profile"));
+
 const Vulnerabilities = lazy(
   () => import("../pages/Vulnerabilities/Vulnerabilities"),
 );
@@ -143,6 +145,17 @@ function AppRouter() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <Users />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Perfil */}
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />

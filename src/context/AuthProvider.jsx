@@ -32,7 +32,6 @@ function AuthProvider({ children }) {
       try {
         const currentUser = await getCurrentUser(controller.signal);
 
-        // Evita recuperar una sesión cerrada mientras se consultaba.
         if (!controller.signal.aborted && getToken() === initialToken) {
           setUser(currentUser);
         }
@@ -62,10 +61,8 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const handleUnauthorized = () => {
       setUser(null);
-
       setCheckingSession(false);
 
-      // Elimina los datos privados de la caché.
       queryClient.clear();
     };
 
@@ -76,17 +73,24 @@ function AuthProvider({ children }) {
     };
   }, [queryClient]);
 
+  // Actualiza los datos del usuario autenticado.
+  const refreshUser = async () => {
+    const currentUser = await getCurrentUser();
+
+    setUser(currentUser);
+
+    return currentUser;
+  };
+
   // Inicia sesión y conserva el JWT.
   const login = async (credentials) => {
     const data = await loginRequest(credentials);
 
     setToken(data.token);
 
-    // Evita conservar información de otro usuario.
     queryClient.clear();
 
     setUser(data.user);
-
     setCheckingSession(false);
 
     return data.user;
@@ -97,7 +101,6 @@ function AuthProvider({ children }) {
     removeToken();
 
     setUser(null);
-
     setCheckingSession(false);
 
     queryClient.clear();
@@ -111,6 +114,7 @@ function AuthProvider({ children }) {
         checkingSession,
         login,
         logout,
+        refreshUser,
       }}
     >
       {children}

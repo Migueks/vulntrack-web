@@ -50,3 +50,22 @@ export const updateUserStatus = async (id, isActive) => {
     body: { isActive },
   });
 };
+
+// Actualiza el perfil del usuario autenticado.
+export const updateMyProfile = async (data) => {
+  return apiRequest("/users/me", {
+    method: "PATCH",
+    body: data,
+  });
+};
+
+// Cambia la contraseña del usuario autenticado.
+export const changeMyPassword = async (currentPassword, newPassword) => {
+  return apiRequest("/users/me/password", {
+    method: "PATCH",
+    body: {
+      currentPassword,
+      newPassword,
+    },
+  });
+};
