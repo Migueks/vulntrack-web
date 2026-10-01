@@ -2,7 +2,8 @@
   "common": {
     "languageSelector": "Choose language",
     "checkingSession": "Checking session...",
-    "retry": "Retry"
+    "retry": "Retry",
+    "loading": "Loading..."
   },
   "header": {
     "securityOperations": "SECURITY OPERATIONS"
@@ -19,7 +20,8 @@
   "layout": {
     "workspace": "Security dashboard",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to main content"
   },
   "hero": {
     "eyebrow": "VULNERABILITY MANAGEMENT PLATFORM",
@@ -412,6 +414,12 @@
     "updateSuccess": "User updated successfully.",
     "activateSuccess": "User activated successfully.",
     "deactivateSuccess": "User disabled successfully."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The requested address does not exist or is no longer available.",
+    "dashboard": "Back to dashboard",
+    "home": "Back to home"
   },
   "status": {
     "initialized": "FRONTEND INITIALIZED"

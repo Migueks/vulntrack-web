@@ -13,6 +13,7 @@ import {
   YAxis,
 } from "recharts";
 
+import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import styles from "./Dashboard.module.css";
@@ -44,6 +45,8 @@ const TOOLTIP_STYLE = {
 function DashboardCharts({ overview }) {
   const { t, i18n } = useTranslation();
 
+  const navigate = useNavigate();
+
   const locale = i18n.resolvedLanguage === "en" ? "en-GB" : "es-ES";
 
   const formatNumber = (value) =>
@@ -63,6 +66,15 @@ function DashboardCharts({ overview }) {
       year: "2-digit",
       timeZone: "UTC",
     }).format(date);
+  };
+
+  // Abre Findings aplicando directamente el filtro seleccionado.
+  const openPriority = (priority) => {
+    navigate(`/findings?priority=${encodeURIComponent(priority)}`);
+  };
+
+  const openStatus = (status) => {
+    navigate(`/findings?status=${encodeURIComponent(status)}`);
   };
 
   const monthlyTrend = overview.monthlyTrend ?? [];
@@ -147,7 +159,9 @@ function DashboardCharts({ overview }) {
                     />
 
                     <Tooltip
-                      cursor={{ stroke: "#3f3f46" }}
+                      cursor={{
+                        stroke: "#3f3f46",
+                      }}
                       contentStyle={TOOLTIP_STYLE}
                       labelStyle={{
                         color: "#a1a1aa",
@@ -166,7 +180,9 @@ function DashboardCharts({ overview }) {
                       stroke="#ef4444"
                       strokeWidth={2.5}
                       dot={false}
-                      activeDot={{ r: 5 }}
+                      activeDot={{
+                        r: 5,
+                      }}
                     />
 
                     <Line
@@ -176,7 +192,9 @@ function DashboardCharts({ overview }) {
                       stroke="#22c55e"
                       strokeWidth={2.5}
                       dot={false}
-                      activeDot={{ r: 5 }}
+                      activeDot={{
+                        r: 5,
+                      }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -185,11 +203,13 @@ function DashboardCharts({ overview }) {
               <div className={styles.chartLegend}>
                 <span>
                   <i className={styles.detectedDot} />
+
                   {t("charts.detected")}
                 </span>
 
                 <span>
                   <i className={styles.closedDot} />
+
                   {t("charts.closed")}
                 </span>
               </div>
@@ -244,7 +264,9 @@ function DashboardCharts({ overview }) {
                   />
 
                   <Tooltip
-                    cursor={{ fill: "transparent" }}
+                    cursor={{
+                      fill: "transparent",
+                    }}
                     contentStyle={TOOLTIP_STYLE}
                     labelStyle={{
                       color: "#a1a1aa",
@@ -268,6 +290,8 @@ function DashboardCharts({ overview }) {
                       <Cell
                         key={item.priority}
                         fill={PRIORITY_COLORS[item.priority] ?? "#71717a"}
+                        cursor="pointer"
+                        onClick={() => openPriority(item.priority)}
                       />
                     ))}
                   </Bar>
@@ -305,7 +329,12 @@ function DashboardCharts({ overview }) {
                       stroke="none"
                     >
                       {statuses.map((item) => (
-                        <Cell key={item.status} fill={item.color} />
+                        <Cell
+                          key={item.status}
+                          fill={item.color}
+                          cursor="pointer"
+                          onClick={() => openStatus(item.status)}
+                        />
                       ))}
                     </Pie>
 
@@ -331,7 +360,12 @@ function DashboardCharts({ overview }) {
 
               <div className={styles.statusLegend}>
                 {statuses.map((item) => (
-                  <div key={item.status} className={styles.statusItem}>
+                  <button
+                    key={item.status}
+                    type="button"
+                    className={styles.statusItem}
+                    onClick={() => openStatus(item.status)}
+                  >
                     <span
                       className={styles.statusDot}
                       style={{
@@ -342,7 +376,7 @@ function DashboardCharts({ overview }) {
                     <span>{item.name}</span>
 
                     <strong>{formatNumber(item.count)}</strong>
-                  </div>
+                  </button>
                 ))}
               </div>
             </>

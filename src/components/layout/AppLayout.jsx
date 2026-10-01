@@ -58,6 +58,10 @@ function AppLayout({ children }) {
     <div className={styles.shell}>
       {/* Fondo del menú móvil */}
 
+      <a href="#main-content" className={styles.skipLink}>
+        {t("layout.skipToContent")}
+      </a>
+
       {sidebarOpen && (
         <button
           type="button"
@@ -119,7 +123,9 @@ function AppLayout({ children }) {
           </div>
         </header>
 
-        <div className={styles.content}>{children}</div>
+        <main id="main-content" className={styles.content} tabIndex="-1">
+          {children}
+        </main>
       </div>
     </div>
   );

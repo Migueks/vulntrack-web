@@ -1,5 +1,6 @@
 import { useDeferredValue, useState } from "react";
-import { useNavigate } from "react-router";
+
+import { useNavigate, useSearchParams } from "react-router";
 
 import {
   AlertTriangle,
@@ -20,13 +21,20 @@ import styles from "./Findings.module.css";
 
 function Findings() {
   const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Estados de búsqueda, filtros y paginación.
   const [search, setSearch] = useState("");
-  const [priority, setPriority] = useState("");
-  const [status, setStatus] = useState("");
-  const [overdue, setOverdue] = useState("");
+
+  const [priority, setPriority] = useState(searchParams.get("priority") ?? "");
+
+  const [status, setStatus] = useState(searchParams.get("status") ?? "");
+
+  const [overdue, setOverdue] = useState(searchParams.get("overdue") ?? "");
+
   const [page, setPage] = useState(1);
 
   // Evita lanzar una petición por cada pulsación.
@@ -63,9 +71,11 @@ function Findings() {
   });
 
   const findings = data?.findings ?? [];
+
   const pagination = data?.pagination;
 
   const totalPages = pagination?.totalPages ?? 1;
+
   const totalFindings = pagination?.total ?? findings.length;
 
   // Formatea las fechas según el idioma activo.
@@ -79,10 +89,29 @@ function Findings() {
     );
   };
 
-  // Al modificar un filtro volvemos a la primera página.
-  const handleFilterChange = (setter) => (event) => {
-    setter(event.target.value);
+  // Actualiza un filtro y mantiene la URL sincronizada.
+  const handleQueryFilterChange = (key, setter) => (event) => {
+    const value = event.target.value;
+
+    setter(value);
     setPage(1);
+
+    setSearchParams(
+      (current) => {
+        const next = new URLSearchParams(current);
+
+        if (value) {
+          next.set(key, value);
+        } else {
+          next.delete(key);
+        }
+
+        return next;
+      },
+      {
+        replace: true,
+      },
+    );
   };
 
   return (
@@ -93,10 +122,12 @@ function Findings() {
         <div>
           <span className={styles.eyebrow}>
             <ClipboardList size={16} aria-hidden="true" />
+
             {t("findings.eyebrow")}
           </span>
 
           <h1>{t("findings.title")}</h1>
+
           <p>{t("findings.description")}</p>
         </div>
 
@@ -167,6 +198,7 @@ function Findings() {
                 value={search}
                 onChange={(event) => {
                   setSearch(event.target.value);
+
                   setPage(1);
                 }}
                 placeholder={t("findings.search")}
@@ -174,45 +206,63 @@ function Findings() {
               />
             </div>
 
+            {/* Prioridad */}
+
             <select
               className={styles.control}
               value={priority}
-              onChange={handleFilterChange(setPriority)}
+              onChange={handleQueryFilterChange("priority", setPriority)}
             >
               <option value="">{t("findings.allPriorities")}</option>
+
               <option value="P1">P1</option>
+
               <option value="P2">P2</option>
+
               <option value="P3">P3</option>
+
               <option value="P4">P4</option>
             </select>
+
+            {/* Estado */}
 
             <select
               className={styles.control}
               value={status}
-              onChange={handleFilterChange(setStatus)}
+              onChange={handleQueryFilterChange("status", setStatus)}
             >
               <option value="">{t("findings.allStatuses")}</option>
+
               <option value="OPEN">{t("findingStatus.OPEN")}</option>
+
               <option value="IN_PROGRESS">
                 {t("findingStatus.IN_PROGRESS")}
               </option>
+
               <option value="MITIGATED">{t("findingStatus.MITIGATED")}</option>
+
               <option value="RESOLVED">{t("findingStatus.RESOLVED")}</option>
+
               <option value="ACCEPTED_RISK">
                 {t("findingStatus.ACCEPTED_RISK")}
               </option>
+
               <option value="FALSE_POSITIVE">
                 {t("findingStatus.FALSE_POSITIVE")}
               </option>
             </select>
 
+            {/* Vencimiento */}
+
             <select
               className={styles.control}
               value={overdue}
-              onChange={handleFilterChange(setOverdue)}
+              onChange={handleQueryFilterChange("overdue", setOverdue)}
             >
               <option value="">{t("findings.allDeadlines")}</option>
+
               <option value="true">{t("findings.overdueOnly")}</option>
+
               <option value="false">{t("findings.notOverdue")}</option>
             </select>
           </div>
@@ -220,6 +270,7 @@ function Findings() {
           {findings.length === 0 ? (
             <div className={styles.empty}>
               <ClipboardList size={32} aria-hidden="true" />
+
               <p>{t("findings.empty")}</p>
             </div>
           ) : (
@@ -229,11 +280,17 @@ function Findings() {
                   <thead>
                     <tr>
                       <th>{t("findings.code")}</th>
+
                       <th>{t("findings.asset")}</th>
+
                       <th>{t("findings.vulnerability")}</th>
+
                       <th>{t("findings.priority")}</th>
+
                       <th>{t("findings.status")}</th>
+
                       <th>{t("findings.assignedTo")}</th>
+
                       <th>{t("findings.dueDate")}</th>
                     </tr>
                   </thead>
@@ -322,6 +379,7 @@ function Findings() {
                   disabled={page <= 1 || isFetching}
                 >
                   <ChevronLeft size={16} aria-hidden="true" />
+
                   {t("findings.previous")}
                 </button>
 
@@ -339,6 +397,7 @@ function Findings() {
                   disabled={page >= totalPages || isFetching}
                 >
                   {t("findings.next")}
+
                   <ChevronRight size={16} aria-hidden="true" />
                 </button>
               </div>

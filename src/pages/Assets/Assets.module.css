@@ -338,7 +338,12 @@
 .searchWrapper input:focus,
 .control:focus {
   border-color: var(--color-primary);
-  outline: none;
+}
+
+.searchWrapper input:focus-visible,
+.control:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0.1875rem;
 }
 
 .searchIcon {

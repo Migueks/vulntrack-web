@@ -1,120 +1,157 @@
-import { Navigate, Route, Routes } from "react-router";
+import { lazy, Suspense } from "react";
+
+import { Route, Routes } from "react-router";
+
+import { useTranslation } from "react-i18next";
 
 import ProtectedRoute from "../components/routes/ProtectedRoute";
 
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import Assets from "../pages/Assets/Assets";
-import AssetDetail from "../pages/AssetDetail/AssetDetail";
-import Vulnerabilities from "../pages/Vulnerabilities/Vulnerabilities";
-import VulnerabilityDetail from "../pages/VulnerabilityDetail/VulnerabilityDetail";
-import Findings from "../pages/Findings/Findings";
-import FindingDetail from "../pages/FindingDetail/FindingDetail";
-import Users from "../pages/Users/Users";
+import styles from "./AppRouter.module.css";
+
+// Las páginas se descargan únicamente cuando se necesitan.
+const Home = lazy(() => import("../pages/Home/Home"));
+
+const Login = lazy(() => import("../pages/Login/Login"));
+
+const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
+
+const Assets = lazy(() => import("../pages/Assets/Assets"));
+
+const AssetDetail = lazy(() => import("../pages/AssetDetail/AssetDetail"));
+
+const Vulnerabilities = lazy(
+  () => import("../pages/Vulnerabilities/Vulnerabilities"),
+);
+
+const VulnerabilityDetail = lazy(
+  () => import("../pages/VulnerabilityDetail/VulnerabilityDetail"),
+);
+
+const Findings = lazy(() => import("../pages/Findings/Findings"));
+
+const FindingDetail = lazy(
+  () => import("../pages/FindingDetail/FindingDetail"),
+);
+
+const Users = lazy(() => import("../pages/Users/Users"));
+
+const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
 
 function AppRouter() {
+  const { t } = useTranslation();
+
   return (
-    <Routes>
-      {/* Página pública */}
+    <Suspense
+      fallback={
+        <main className={styles.loadingPage}>
+          <p className={styles.loadingMessage} role="status">
+            {t("common.loading")}
+          </p>
+        </main>
+      }
+    >
+      <Routes>
+        {/* Página pública */}
 
-      <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
-      {/* Login */}
+        {/* Login */}
 
-      <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
-      {/* Dashboard */}
+        {/* Dashboard */}
 
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-      {/* Activos */}
+        {/* Activos */}
 
-      <Route
-        path="/assets"
-        element={
-          <ProtectedRoute>
-            <Assets />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path="/assets"
+          element={
+            <ProtectedRoute>
+              <Assets />
+            </ProtectedRoute>
+          }
+        />
 
-      {/* Detalles del activo */}
-      <Route
-        path="/assets/:id"
-        element={
-          <ProtectedRoute>
-            <AssetDetail />
-          </ProtectedRoute>
-        }
-      />
+        {/* Detalle del activo */}
 
-      {/* Vulnerabilidades */}
+        <Route
+          path="/assets/:id"
+          element={
+            <ProtectedRoute>
+              <AssetDetail />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/vulnerabilities"
-        element={
-          <ProtectedRoute>
-            <Vulnerabilities />
-          </ProtectedRoute>
-        }
-      />
+        {/* Vulnerabilidades */}
 
-      {/* Detalle de vulnerabilidad */}
+        <Route
+          path="/vulnerabilities"
+          element={
+            <ProtectedRoute>
+              <Vulnerabilities />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/vulnerabilities/:id"
-        element={
-          <ProtectedRoute>
-            <VulnerabilityDetail />
-          </ProtectedRoute>
-        }
-      />
+        {/* Detalle de vulnerabilidad */}
 
-      {/* Hallazgos */}
+        <Route
+          path="/vulnerabilities/:id"
+          element={
+            <ProtectedRoute>
+              <VulnerabilityDetail />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/findings"
-        element={
-          <ProtectedRoute>
-            <Findings />
-          </ProtectedRoute>
-        }
-      />
+        {/* Hallazgos */}
 
-      {/* Detalle de hallazgo */}
+        <Route
+          path="/findings"
+          element={
+            <ProtectedRoute>
+              <Findings />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/findings/:id"
-        element={
-          <ProtectedRoute>
-            <FindingDetail />
-          </ProtectedRoute>
-        }
-      />
+        {/* Detalle de hallazgo */}
 
-      {/* Administración de usuarios */}
+        <Route
+          path="/findings/:id"
+          element={
+            <ProtectedRoute>
+              <FindingDetail />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/users"
-        element={
-          <ProtectedRoute allowedRoles={["ADMIN"]}>
-            <Users />
-          </ProtectedRoute>
-        }
-      />
+        {/* Administración de usuarios */}
 
-      {/* Ruta desconocida */}
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <Users />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        {/* Ruta desconocida */}
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 

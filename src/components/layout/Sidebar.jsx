@@ -50,7 +50,12 @@ function Sidebar({ isOpen, onNavigate }) {
     >
       {/* Identidad */}
 
-      <div className={styles.brand}>
+      <NavLink
+        to="/dashboard"
+        onClick={onNavigate}
+        className={styles.brand}
+        aria-label="VulnTrack Dashboard"
+      >
         <div className={styles.brandIcon}>
           <ShieldCheck size={23} strokeWidth={2} aria-hidden="true" />
         </div>
@@ -58,7 +63,7 @@ function Sidebar({ isOpen, onNavigate }) {
         <span className={styles.brandName}>
           VULNTRACK<span>.</span>
         </span>
-      </div>
+      </NavLink>
 
       {/* Navegación */}
 

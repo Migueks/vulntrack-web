@@ -2,7 +2,8 @@
   "common": {
     "languageSelector": "Elegir idioma",
     "checkingSession": "Comprobando sesión...",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "loading": "Cargando..."
   },
   "header": {
     "securityOperations": "OPERACIONES DE SEGURIDAD"
@@ -19,7 +20,8 @@
   "layout": {
     "workspace": "Panel de seguridad",
     "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "skipToContent": "Saltar al contenido principal"
   },
   "hero": {
     "eyebrow": "PLATAFORMA DE GESTIÓN DE VULNERABILIDADES",
@@ -412,6 +414,12 @@
     "updateSuccess": "Usuario actualizado correctamente.",
     "activateSuccess": "Usuario activado correctamente.",
     "deactivateSuccess": "Usuario desactivado correctamente."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La dirección que has solicitado no existe o ya no está disponible.",
+    "dashboard": "Volver al panel",
+    "home": "Volver al inicio"
   },
   "status": {
     "initialized": "FRONTEND INICIALIZADO"

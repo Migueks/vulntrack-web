@@ -80,7 +80,12 @@
 .block select:focus,
 .block textarea:focus {
   border-color: var(--color-primary);
-  outline: none;
+}
+
+.block select:focus-visible,
+.block textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0.1875rem;
 }
 
 /* Botones */

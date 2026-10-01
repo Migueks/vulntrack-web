@@ -1,0 +1,20 @@
+/* Carga diferida de páginas */
+
+.loadingPage {
+  display: grid;
+
+  min-height: 100vh;
+
+  place-items: center;
+
+  background: var(--color-background);
+}
+
+.loadingMessage {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}

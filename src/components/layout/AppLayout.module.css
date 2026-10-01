@@ -146,6 +146,30 @@
   display: none;
 }
 
+/* Accesibilidad */
+
+.skipLink {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+
+  padding: 0.625rem 0.875rem;
+
+  border-radius: var(--radius-md);
+
+  background: var(--color-primary);
+  color: #ffffff;
+
+  font-weight: 600;
+
+  transform: translateY(-200%);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
 /* Tablet y móvil */
 
 @media (max-width: 60rem) {
