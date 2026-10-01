@@ -206,8 +206,6 @@ function Findings() {
               />
             </div>
 
-            {/* Prioridad */}
-
             <select
               className={styles.control}
               value={priority}
@@ -216,15 +214,10 @@ function Findings() {
               <option value="">{t("findings.allPriorities")}</option>
 
               <option value="P1">P1</option>
-
               <option value="P2">P2</option>
-
               <option value="P3">P3</option>
-
               <option value="P4">P4</option>
             </select>
-
-            {/* Estado */}
 
             <select
               className={styles.control}
@@ -251,8 +244,6 @@ function Findings() {
                 {t("findingStatus.FALSE_POSITIVE")}
               </option>
             </select>
-
-            {/* Vencimiento */}
 
             <select
               className={styles.control}
@@ -309,21 +300,23 @@ function Findings() {
                           }
                         }}
                       >
-                        <td>
+                        <td data-label={t("findings.code")}>
                           <span className={styles.code}>
                             {finding.findingCode}
                           </span>
                         </td>
 
-                        <td>{finding.asset?.name ?? "—"}</td>
+                        <td data-label={t("findings.asset")}>
+                          {finding.asset?.name ?? "—"}
+                        </td>
 
-                        <td>
+                        <td data-label={t("findings.vulnerability")}>
                           <strong className={styles.name}>
                             {finding.vulnerability?.title ?? "—"}
                           </strong>
                         </td>
 
-                        <td>
+                        <td data-label={t("findings.priority")}>
                           <span
                             className={styles.priorityBadge}
                             data-priority={finding.priority}
@@ -332,7 +325,7 @@ function Findings() {
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("findings.status")}>
                           <span
                             className={styles.statusBadge}
                             data-status={finding.status}
@@ -341,11 +334,11 @@ function Findings() {
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("findings.assignedTo")}>
                           {finding.assignedTo?.name ?? t("findings.unassigned")}
                         </td>
 
-                        <td>
+                        <td data-label={t("findings.dueDate")}>
                           <div className={styles.dueDate}>
                             {finding.overdue && (
                               <AlertTriangle

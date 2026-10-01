@@ -472,17 +472,17 @@ function Users() {
 
                     return (
                       <tr key={user.id}>
-                        <td>
+                        <td data-label={t("users.code")}>
                           <span className={styles.code}>{user.userCode}</span>
                         </td>
 
-                        <td>
+                        <td data-label={t("users.name")}>
                           <strong className={styles.name}>{user.name}</strong>
                         </td>
 
-                        <td>{user.email}</td>
+                        <td data-label={t("users.email")}>{user.email}</td>
 
-                        <td>
+                        <td data-label={t("users.role")}>
                           <span
                             className={styles.roleBadge}
                             data-role={user.role}
@@ -491,7 +491,7 @@ function Users() {
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("users.status")}>
                           <span
                             className={styles.statusBadge}
                             data-active={user.isActive}
@@ -502,7 +502,7 @@ function Users() {
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("users.actions")}>
                           <div className={styles.tableActions}>
                             <button
                               type="button"

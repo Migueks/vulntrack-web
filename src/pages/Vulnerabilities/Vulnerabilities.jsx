@@ -262,27 +262,29 @@ function Vulnerabilities() {
                           }
                         }}
                       >
-                        <td>
+                        <td data-label={t("vulnerabilities.code")}>
                           <span className={styles.code}>
                             {vulnerability.vulnerabilityCode}
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("vulnerabilities.titleColumn")}>
                           <strong className={styles.name}>
                             {vulnerability.title}
                           </strong>
                         </td>
 
-                        <td>{vulnerability.cveId || "—"}</td>
+                        <td data-label={t("vulnerabilities.cve")}>
+                          {vulnerability.cveId || "—"}
+                        </td>
 
-                        <td>
+                        <td data-label={t("vulnerabilities.cvss")}>
                           <span className={styles.cvss}>
-                            {vulnerability.cvssScore.toFixed(1)}
+                            {Number(vulnerability.cvssScore).toFixed(1)}
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("vulnerabilities.severity")}>
                           <span
                             className={styles.severityBadge}
                             data-severity={vulnerability.severity}
@@ -293,7 +295,7 @@ function Vulnerabilities() {
                           </span>
                         </td>
 
-                        <td>
+                        <td data-label={t("vulnerabilities.status")}>
                           <span
                             className={styles.statusBadge}
                             data-status={vulnerability.status}

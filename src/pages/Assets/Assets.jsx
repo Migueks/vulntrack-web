@@ -241,19 +241,19 @@ function Assets() {
                             }
                           }}
                         >
-                          <td>
+                          <td data-label={t("assets.code")}>
                             <span className={styles.code}>
                               {asset.assetCode ?? "—"}
                             </span>
                           </td>
 
-                          <td>
+                          <td data-label={t("assets.name")}>
                             <strong className={styles.name}>
                               {asset.name ?? "—"}
                             </strong>
                           </td>
 
-                          <td>
+                          <td data-label={t("assets.type")}>
                             {asset.type
                               ? t(`assetType.${asset.type}`, {
                                   defaultValue: asset.type,
@@ -261,7 +261,7 @@ function Assets() {
                               : "—"}
                           </td>
 
-                          <td>
+                          <td data-label={t("assets.criticality")}>
                             <span
                               className={styles.criticalityBadge}
                               data-criticality={asset.criticality}
@@ -272,7 +272,7 @@ function Assets() {
                             </span>
                           </td>
 
-                          <td>
+                          <td data-label={t("assets.status")}>
                             <span
                               className={styles.statusBadge}
                               data-status={asset.status}
