@@ -333,7 +333,41 @@ VITE_API_URL=http://localhost:3000/api/v1
 
 `VITE_API_URL` debe apuntar al prefijo completo de la API de VulnTrack.
 
-En producción debe utilizarse la URL pública del backend desplegado.
+En producción se utiliza:
+
+```dotenv
+VITE_API_URL=https://vulntrack-api-5byl.onrender.com/api/v1
+```
+
+## Despliegue
+
+El frontend está desplegado en **Netlify**.
+
+### Aplicación
+
+```text
+https://vulntrack-web.netlify.app
+```
+
+### Backend conectado
+
+```text
+https://vulntrack-api-5byl.onrender.com
+```
+
+### API REST
+
+```text
+https://vulntrack-api-5byl.onrender.com/api/v1
+```
+
+La aplicación utiliza una regla de redirección SPA en `public/_redirects` para que React Router gestione correctamente las rutas al acceder directamente o refrescar la página:
+
+```text
+/*    /index.html   200
+```
+
+Netlify ejecuta `npm run build` y publica el directorio `dist`.
 
 ## Comandos disponibles
 
@@ -398,11 +432,11 @@ Estas medidas **no sustituyen la seguridad del backend**. La API aplica autentic
 
 ## Estado del proyecto
 
-El frontend funcional se encuentra desarrollado e integrado con VulnTrack API.
+El frontend se encuentra desarrollado, integrado con VulnTrack API y desplegado en producción mediante Netlify.
 
 Se han completado las vistas principales, gestión por roles, internacionalización, diseño responsive, accesibilidad básica, code splitting y comprobaciones de ESLint y build de producción.
 
-El siguiente paso para su publicación es configurar las URLs definitivas de frontend y backend en sus respectivos entornos de producción.
+La aplicación consume la API desplegada en Render mediante la variable `VITE_API_URL` y utiliza una redirección SPA para mantener el funcionamiento de React Router en producción.
 
 ## Autor
 
